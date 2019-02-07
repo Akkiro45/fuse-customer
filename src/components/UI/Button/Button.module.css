@@ -1,0 +1,88 @@
+/* .Button button {
+    border: none;
+    padding: 5px;
+    width: 200px;
+    height: 50px;
+    background-color: #006979;
+    color: white;
+    font-size: 0.9em;
+    cursor: pointer;
+    margin: 20px 30px;
+    font-weight: bold;
+}
+
+@media (max-width: 650px) {
+    .Button button {
+        width: 180px;
+    }
+} */
+.Button button {
+    border: none;
+    padding: 5px;
+    width: 35%;
+    height: 50px;
+    background-color: #006979;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 30px;
+    /* margin: 20px 30px; */
+    /* margin: 5% 10%; */
+    font-weight: bold;
+    outline: none;
+    /* display: inline-block; */
+}
+
+.Button button:hover,
+.Button button:active,
+.Button1 button:hover,
+.Button1 button:active {
+    color: #006979;
+    background-color: white;
+    border: 1px solid #006979;
+}
+
+.Button1 button { 
+	/* width: 19%; */
+	width: 100px;
+	font-size: 0.9em;
+	height: 30px;
+	color: #006989;
+	padding: 3px;
+	border: none;
+	background-color: #006979;
+	color: white;
+	cursor: pointer;
+	border-radius: 30px;
+	font-weight: bold;
+	outline: none;
+}
+
+@media( max-width: 600px ) {
+    .Button1 button {
+        font-size: 0.8em;
+        width: 80px;
+    }
+}
+
+@media (max-width: 650px) {
+    .Button button {
+        width: 50%;
+        height: 30px;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 450px) {
+	.Button button {
+			width: 80%;
+			height: 30px;
+			font-size: 0.8em;
+	}
+}
+
+@media (max-width: 800px) {
+    .Button button {
+        font-size: 1em;
+    }
+}

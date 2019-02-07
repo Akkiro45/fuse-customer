@@ -1,0 +1,36 @@
+.Button,
+.Danger {
+  width: 40%;
+  height: 45px;
+  /*  margin-left: 20%; */
+  margin-top: 2%; 
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 3px;
+  color: #006989;
+  cursor: pointer;
+  border: 1px solid #006989;
+  outline: none;
+}
+.Danger {
+  color: red;
+  border: 1px solid red;
+}
+
+.Button:hover,
+.Button:active {
+  color: white;
+  background-color: #006989;
+  /* border: 1px solid white; */
+}
+.Danger:hover,
+.Danger:active {
+  color: white;
+  background-color: red;
+}

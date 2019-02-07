@@ -1,0 +1,47 @@
+.Select { 
+  width: 20%;
+  font-size: 0.9em;
+  height: 30px;
+  color: #006989;
+  padding: 3px;
+  border: 1px solid #006989;
+  cursor: pointer;
+}
+
+.Big,
+.Small,
+.Medium {
+  font-size: 1em;
+  padding: 0 7px;
+  border-radius: 20px;
+  height: 35px;
+  outline: none;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+.Big {
+  width: 93%;
+}
+.Medium {
+  width: 40%;
+}
+.Small {
+  width: 20%;
+}
+.Big:hover,
+.Big:active,
+.Big:focus,
+.Small:hover,
+.Small:active,
+.Small:focus,
+.Medium:hover,
+.Medium:active,
+.Medium:focus {
+  border: 2px solid #33addd;
+}
+
+@media( max-width: 600px ) {
+  .Select {
+    font-size: 0.8em;
+  }
+}

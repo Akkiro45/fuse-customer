@@ -1,0 +1,16 @@
+.Title {
+  /* background-color: cadetblue; */
+  color: #006989;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+.FButton {
+  width: 120px;
+  margin: auto;
+}
+.Error {
+  color: red;
+  text-align: center;
+  font-size: 1em;
+}

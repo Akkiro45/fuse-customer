@@ -1,0 +1,29 @@
+.Input {
+  margin: 0;
+  width: 20%;
+  height: 45px;
+  font-size: 1.2em;
+  border-radius: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  outline: none;
+  border: 2px solid #33addd;
+  margin-top: 2%;
+}
+
+.Input:focus,
+.Input:active,
+.Input:hover {
+  border: 2px solid #87cefa;
+}
+.Height {
+  height: 30px;
+  font-size: 0.9em;
+}
+
+@media( max-width: 600px ) {
+  .Height {
+    height: 25px;
+    font-size: 0.8em;
+  }
+}

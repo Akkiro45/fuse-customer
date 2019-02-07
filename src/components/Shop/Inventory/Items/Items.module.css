@@ -1,0 +1,58 @@
+.Items {
+  /* background-color: chartreuse; */
+  width: 100%;
+  height: 250px;
+  border-bottom: 2px solid #006989;
+}
+
+.Container {
+  /* background-color: thistle; */
+  width: 98%;
+  height: 90%;
+  float: right;
+  position: relative;
+  top: 5%;
+}
+
+.Category {
+  /* background-color: blueviolet; */
+  width: 100%;
+  height: 33px;
+  font-size: 1.5em;
+  color: #006989;
+  font-weight: bold;
+}
+
+.Content {
+  /* background-color: burlywood; */
+  height: calc(215px - 10%);
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.AddIcon {
+  /* background-color: aqua; */
+  width: 100px;
+  height: 100%;
+  float: left;
+  position: relative;
+  top: 32%;
+}
+
+.Icon {
+  /* background-color: blueviolet; */
+  width: 40px;
+  font-size: 2.5em;
+  margin: auto;
+}
+.Msg {
+  /* background-color: blue; */
+  width: 200px;
+  display: inline-block;
+  color: #006989;
+  font-weight: bold;
+  font-size: 1.2em;
+  position: relative;
+  top: 35%;
+}

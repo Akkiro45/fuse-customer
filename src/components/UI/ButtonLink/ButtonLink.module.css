@@ -1,0 +1,42 @@
+.Container {
+  background-color: white;
+  width: 150px;
+  height: 35px;
+  margin: auto;
+  text-align: center;
+  border: 2px solid #006989; 
+  border-radius: 20px;
+  padding-top: 9px;
+  opacity: 0.7;
+}
+
+.ButtonLink {
+  color: #006989;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.Link {
+  width: 150px;
+  height: 35px;
+}
+
+.Container:hover .ButtonLink,
+.Container:active .ButtonLink {
+  color: white;
+}
+
+.Container:hover,
+.Container:active {
+  background-color: #006989;
+  border: 2px solid white;
+}
+
+@media( max-width: 550px ) {
+  .Container,
+  .Link {
+    width: 100px;
+    font-size: 1em;
+  }
+}

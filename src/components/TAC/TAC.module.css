@@ -1,0 +1,14 @@
+.mainDiv {
+  width: 90%;
+  max-width: 950px;
+  margin: 20px auto;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.mainContent {
+  text-align: justify;
+}
+
+.subContent {
+  display: block;
+}

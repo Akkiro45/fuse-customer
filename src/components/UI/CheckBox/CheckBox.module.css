@@ -1,0 +1,10 @@
+.CheckBox {
+  zoom: 1.2;
+  cursor: pointer;
+}
+
+@media(max-width: 650px) {
+  .CheckBox {
+    zoom: 1;
+  }
+}

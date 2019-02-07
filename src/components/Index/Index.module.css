@@ -1,0 +1,86 @@
+.Index {
+  /* background-color: chartreuse; */
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  /* position: relative;
+  top: 0;
+  left: 0; */
+}
+
+.Showcase {
+  background-color: #006989;
+  box-sizing: border-box;
+  width: 100%;
+  height: 375px;
+  box-shadow: 0 0 5px 2px #888;
+}
+
+.Links {
+  /* background-color: coral; */
+  width: 50%;
+  height: 16%;
+  margin: auto;
+  position: relative;
+  top: 55%;
+}
+
+.Content {
+  /* background-color: cyan; */
+  width: 100%;
+  height: auto;
+  text-align: center;
+  padding: 3% 0; 
+  color: #006989;
+  /* box-sizing: border-box; */
+}
+
+.Title {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0;
+  margin-bottom: 2px;
+}
+
+.Text {
+  font-size: 1em;
+}
+
+.Left,
+.Right {
+  /* background-color: crimson; */
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.Right {
+  float: right;
+  /* background-color: blueviolet; */
+}
+
+.Fuse {
+  /* background-color: aqua; */
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+  position: relative;
+  top: 120px;
+}
+
+.TagLine {
+  font-weight: 100;
+  font-size: 1.2em;
+  margin: 0;
+  margin-bottom: 2px;
+  color: white;
+  position: relative;
+  top: 130px;
+  text-align: center;
+}
+
+@media( max-width: 630px ) {
+  .Links {
+    width: 70%;
+  }
+}

@@ -1,0 +1,16 @@
+.Link {
+  text-decoration: none;
+  color: white;
+}
+
+.Style {
+  color: white;
+  font-weight: bold;
+}
+.Style:hover {
+  color: blue;
+}
+
+.Blue {
+  color: blue;
+}

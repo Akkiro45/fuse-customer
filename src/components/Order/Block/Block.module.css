@@ -1,0 +1,76 @@
+.InfoContainer {
+  color: #4F5151;
+  font-size: 1.2em;
+  width: 95%;
+  height: 100%;
+  margin: auto;
+}
+
+.Icon {
+  float: left;
+  height: 100%;
+  width: 5%;
+}
+
+.Text {
+  display: block;
+  float: right;
+  width: 90%;
+  margin-left: 5%;
+  color: #006989;
+}
+
+
+.InfoContainer .Icon1 {
+  /* background-color: brown; */
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.InfoContainer .Icon2 {
+  /* background-color: burlywood; */
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+.InfoContainer .Left {
+  /* background-color: cornflowerblue; */
+  width: 80%;
+  height: 50%;
+  float: right;
+}
+.Left span {
+  margin-top: 5%;
+}
+
+.InfoContainer .Right {
+  /* background-color: crimson; */
+  /* margin-left: 10%; */
+  /* width: 90%; */
+  height: 50%;
+  width: 70%;
+  float: right;
+}
+@media(max-width: 600px) {
+  .InfoContainer {
+    font-size: 0.9em;
+    word-wrap: break-word;
+  }
+  .Text {
+    width: 85%;
+  }
+  .Left span {
+    margin-top: 15%;
+  }
+}
+
+@media( max-width: 350px ) {
+  .InfoContainer {
+    font-size: 0.8em;
+  }
+  .Left span {
+    margin-top: 20%;
+  }
+}

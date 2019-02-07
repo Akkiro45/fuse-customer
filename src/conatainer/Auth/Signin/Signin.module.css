@@ -1,0 +1,100 @@
+.Signin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #33addd;
+}
+
+.Signin .Box {
+  box-sizing: border-box;
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  padding: 0;
+  margin-top: 2%;
+}
+
+.Signin .Box .Left {
+  float: left;
+  width: 49%;
+  height: 100%;
+  border-right: 1px solid white; 
+  color: white;
+  text-align: center;
+}
+
+.Signin .Box .Left h1 {
+  font-size: 5em;
+  padding: 0;
+  margin: 0;
+}
+.Signin .Box .Left Link {
+  text-decoration: none;
+}
+
+.Signin .Box .Left p {
+  font-size: 2em;
+  padding: 0;
+  margin: 0;
+}
+
+.Signin .Box .Left .Text {
+  position: relative;
+  top: 38%;
+}
+
+.Signin .Box .Right {
+  float: right;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+}
+
+.Signin .Box .Right form {
+  position: relative;
+  top: 20%;
+}
+
+.Signin .Link {
+  margin-top: 3%;
+}
+.Signin .Divide {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 0;
+  margin-top: 2%;
+  padding: 0;
+} 
+
+@media( max-width: 650px ) {
+  .Signin .Box {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  .Signin .Box .Left {
+    clear: both;
+    width: 100%;
+    height: 5%;
+    border-right: none;
+  }
+  .Signin .Box .Left h1 {
+    font-size: 3em;
+  }
+  
+  .Signin .Box .Left p {
+    font-size: 1.5em;
+  }
+  
+  .Signin .Box .Right {
+    clear: both;
+    width: 100%;
+    height: 95%;
+  }
+}

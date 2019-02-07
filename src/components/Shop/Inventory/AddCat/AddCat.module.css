@@ -1,0 +1,33 @@
+.AddCat {
+  /* background-color: aqua; */
+  /* width: 100%; */
+  /* height: 250px; */
+}
+.Title {
+  /* background-color: cadetblue; */
+  color: #006989;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+.InputBox {
+  /* background-color: blueviolet; */
+  height: 80px;
+}
+.Input {
+  /* background-color: blanchedalmond; */
+  width: 80%;
+  /* margin: auto; */
+  position: relative;
+  top: 19px;
+  left: 8%;
+}
+.Button {
+  width: 150px;
+  margin: auto;
+}
+.Error {
+  color: red;
+  text-align: center;
+  font-size: 1em;
+}
