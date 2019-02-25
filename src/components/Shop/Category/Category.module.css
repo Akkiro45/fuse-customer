@@ -10,12 +10,10 @@
 .Left {
   float: left;
   width: 50%;
-  /* height: 100%; */
 }
 
 .Right {
   width: 50%;
-  /* height: 100%; */
   float: right;
 }
 

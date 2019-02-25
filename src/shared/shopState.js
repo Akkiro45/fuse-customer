@@ -55,26 +55,9 @@ export const ShopState = {
     height: '35px'
   },
   state: {
-    type: 'text',
-    placeholder: 'State',
-    value: '',
+    value: 'state*',
     name: 'state',
-    minLength: '1',
-    maxLength: '200',
-    required: true,
-    width: '80%',
-    height: '35px'
-  },
-  country: {
-    type: 'text',
-    placeholder: 'Country',
-    value: 'India',
-    name: 'country',
-    minLength: '1',
-    maxLength: '300',
-    required: true,
-    width: '80%',
-    height: '35px'
+    type: 3
   },
   category: {
     value: 'Category*',

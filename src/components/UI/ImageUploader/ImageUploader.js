@@ -14,7 +14,7 @@ const imageUploader = (props) => {
       </div>
       <div className={module.PhotoBox} >
         {/* eslint-disable-next-line  */}
-        <img src={props.src} style={{ width: '100%', height: '100%' }} />
+        <img src={props.src} />
       </div>
       <div className={module.PhotoButtons} >
         <div className={module.SideSpace} >

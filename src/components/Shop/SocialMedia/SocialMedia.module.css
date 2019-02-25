@@ -10,7 +10,6 @@
 .Left{
   float: left;
   width: 50%;
-  /* height: 100%; */
 }
 .Left1 {
   float: left;
@@ -19,7 +18,6 @@
 
 .Right {
   width: 50%;
-  /* height: 100%; */
   float: right;
 }
 

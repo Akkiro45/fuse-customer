@@ -112,6 +112,7 @@ class Signup extends Component {
     this.props.authFailConfirm()
   }
   render() {
+    const tacUrl = `${window.location.origin}/auth/tandc`;
     let errorMsg = null;
     let form = null, el = null, ren = null, redirect = null;
     if(this.props.error) {
@@ -163,7 +164,10 @@ class Signup extends Component {
                       checked={this.state.TAC} />
                   </div> 
                   <div>
-                    <Link to="/auth/tandc" >Terms and conditions</Link>
+                    {/* eslint-disable-next-line */}
+                    <a href={tacUrl} target='_blank'>
+                      Terms and conditions
+                    </a>
                   </div>
                 </div>
               </div>

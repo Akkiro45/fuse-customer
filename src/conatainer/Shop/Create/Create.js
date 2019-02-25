@@ -15,34 +15,11 @@ import CheckIcon from '../../../components/UI/Icons/Check/Check';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import ImageUploader from '../../../components/UI/ImageUploader/ImageUploader';
 import { validateCreateShop1, getInput, getSelect } from '../../../shared/utility';
-import { shopCategories, linksType, deliveryService } from '../../../shared/option';
+import { shopCategories, linksType, deliveryService, states } from '../../../shared/option';
 import { ShopState } from '../../../shared/shopState';
 import Category from '../../../components/Shop/Category/Category';
 import SocialMedia from '../../../components/Shop/SocialMedia/SocialMedia';
 
-let mapStateToProps = state => {
-  return {
-    firstName: state.auth.firstName,
-    lastName: state.auth.lastName,
-    token: state.auth.token,
-    error: state.shop.error,
-    loading: state.shop.loading,
-    domain: state.shop.domain
-  }
-}
-
-let mapDispatchToProps = dispatch => {
-  return {
-    checkShopDomain: (name) => dispatch(actions.checkShopDomain(name)),
-    checkDomainFailConfirm: () => dispatch(actions.checkDomainFailConfirm()),
-    createShop: (token, body) => dispatch(actions.createShop(token, body))
-  }
-}
-
-const unSubscribe = () => {
-  mapDispatchToProps = null;
-  mapStateToProps = null;
-}
 
 class Create extends Component {
   state = {
@@ -55,9 +32,6 @@ class Create extends Component {
     next: false,
     uploded: false,
     finalData: null
-  }
-  componentWillUnmount() {
-    unSubscribe();
   }
   onDomainCheck = () => {
     this.props.checkShopDomain(this.state.data.domain.value);
@@ -75,7 +49,6 @@ class Create extends Component {
   }
   onUpload = () => {
     if(this.state.file) {
-      // console.log('Uploded');
       const updatedshopPhoto = updateObject(this.state.data.shopPhoto, { name: this.state.file.name, type: this.state.file.type });
       const updateData = updateObject(this.state.data, { shopPhoto: updatedshopPhoto });
       this.setState({ uploded: true, data: updateData });
@@ -131,7 +104,6 @@ class Create extends Component {
     let valid = validateCreateShop1(this.state.data);
     if(valid.valid) {
       this.setState({ next: true, finalData: valid.data });
-      // console.log('FinalData: ', valid.data);
     } else {
       this.setState({ error: valid.msg });
     }
@@ -213,14 +185,8 @@ class Create extends Component {
               {getInput(this.state.data.pincode ,this.inputChangedHandler)}
             </div>
           </div>
-          <div className={module.Pair} >
-            <div className={module.Left} >
-              {getInput(this.state.data.state ,this.inputChangedHandler)}
-            </div>
-            <div className={module.Right} >
-              {getInput(this.state.data.country ,this.inputChangedHandler)}
-            </div>
-          </div>
+          {getSelect(this.state.data.state, states, this.onSelectHandler, 'state')}
+          
           <div style={{ height: 'auto', width: '100%' }} >
             <Category
               shopCategories={this.state.data.shopCategories}
@@ -273,7 +239,6 @@ class Create extends Component {
             <Space />
             <Label>Domain Name</Label>
             <Label>eg. applestore</Label>
-            {/* <Label>https://www.fuse.com/</Label> */}
             <div className={module.Pair} >
               <div className={module.Left} style={{ width: '85%' }} >
                 {getInput(this.state.data.domain ,this.inputChangedHandler)}
@@ -318,6 +283,23 @@ class Create extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    firstName: state.auth.firstName,
+    lastName: state.auth.lastName,
+    token: state.auth.token,
+    error: state.shop.error,
+    loading: state.shop.loading,
+    domain: state.shop.domain
+  }
+}
 
+const mapDispatchToProps = dispatch => {
+  return {
+    checkShopDomain: (name) => dispatch(actions.checkShopDomain(name)),
+    checkDomainFailConfirm: () => dispatch(actions.checkDomainFailConfirm()),
+    createShop: (token, body) => dispatch(actions.createShop(token, body))
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Create);

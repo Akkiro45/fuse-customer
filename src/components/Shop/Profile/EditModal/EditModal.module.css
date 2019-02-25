@@ -1,21 +1,19 @@
 .EditModal {
-  /* background-color: aquamarine; */
   width: 100%;
 }
 .Title {
-  /* background-color: cadetblue; */
-  color: #006989;
+  color: #2874ff;
   font-size: 1.2em;
   font-weight: bold;
   text-align: center;
 }
 .Button {
   width: 150px;
-  margin: auto;
+  margin: 10px auto;
 }
 .Error {
-  margin-top: 10px;
-  color: red;
+  margin: 10px 0;
+  color: #ff0000;
   text-align: center;
   font-size: 1em;
 }

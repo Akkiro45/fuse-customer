@@ -7,14 +7,14 @@
   padding-left: 10px;
   padding-right: 10px;
   outline: none;
-  border: 2px solid #33addd;
+  border: 2px solid #2874ff;
   margin-top: 2%;
 }
 
 .Input:focus,
 .Input:active,
 .Input:hover {
-  border: 2px solid #87cefa;
+  border: 2px solid #b0ccff;
 }
 .Height {
   height: 30px;

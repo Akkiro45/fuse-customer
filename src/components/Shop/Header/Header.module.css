@@ -15,13 +15,21 @@
   font-size: 1.5em;
   overflow: hidden;
   position: relative;
-  top: 5px;
+  top: 6px;
 }
 .Container .Title p {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  position: relative;
-  top: 25%;
+  word-break: break-all;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+  justify-content:center;
+  align-content:center;
+  flex-direction:column;
 }
 
 
@@ -36,6 +44,7 @@
   .Container .Title {
     font-size: 1.3em;
     float: right;
-    width: calc(100% - 40px);
+    width: calc(100% - 45px);
+    top: 8px;
   }
 }

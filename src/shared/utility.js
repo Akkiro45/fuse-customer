@@ -2,7 +2,9 @@ import React from 'react';
 import moment from 'moment';
 
 import Input from '../components/Shop/Input/Input';
+import RInput from '../components/UI/RInput/RInput';
 import Select from '../components/UI/Select/Select';
+import RSelect from '../components/UI/RSelect/Select';
 import { shopCategories, linksType } from './option';
 
 export const updateObject = (oldObject, updatedproperties) => {
@@ -67,8 +69,8 @@ const validatePhoneNumber = (phoneNumber) => {
   return re.test(phoneNumber);
 }
 
-export const validateOrderData = (deliveryTime, expirationTime, custAcceptMsg) => {
-  let miniutes = parseInt(expirationTime);
+
+export const validateOrderData = (deliveryTime, cancelOrder) => {
   let valid = true;
   let msg = null;
   if(deliveryTime.from.year === 'year' || deliveryTime.from.month === 'month' || deliveryTime.from.day === 'day' || deliveryTime.from.hour === 'hour' || deliveryTime.from.miniutes === 'miniutes' ||
@@ -77,16 +79,11 @@ export const validateOrderData = (deliveryTime, expirationTime, custAcceptMsg) =
     msg = 'Please fill the date&time!';
     return { valid, msg };
   }
-  if(isNaN(miniutes)) {
-    valid = false;
-    msg = 'Please enter valid miniutes!';
-    return { valid, msg };
-  }
   const date1 = new Date(deliveryTime.from.year, deliveryTime.from.month - 1, deliveryTime.from.day, deliveryTime.from.hour, deliveryTime.from.miniutes, 0, 0).getTime();
   const date2 = new Date(deliveryTime.to.year, deliveryTime.to.month - 1, deliveryTime.to.day, deliveryTime.to.hour, deliveryTime.to.miniutes, 0, 0).getTime();
   if(date1 < date2) {
     valid = valid && true;
-    msg = { deliveryTime: { from: date1, to: date2 }, expirationTime: miniutes * 60000, custAcceptMsg: custAcceptMsg.value  };
+    msg = { deliveryTime: { from: date1, to: date2 }, cancelOrder };
     return { valid, msg };
   } else {
     valid = false;
@@ -125,7 +122,7 @@ const checkLimit = (data) => {
   }
 }
 
-const checkForNumber = (str) => {
+export const checkForNumber = (str) => {
   // eslint-disable-next-line
   let re = /^\d+$/;
   return re.test(str);
@@ -133,7 +130,7 @@ const checkForNumber = (str) => {
 
 export const validateCreateShop1 = (data) => {
   let finalData = {};
-  let fields = [data.shopName, data.streetAdd, data.landmark, data.city, data.pincode, data.state, data.country, data.phoneNumber, data.description];
+  let fields = [data.shopName, data.streetAdd, data.landmark, data.city, data.pincode, data.phoneNumber, data.description];
   for(let i=0; i<fields.length; i++) {
     if(forEmpty(fields[i])) {
       return forEmpty(fields[i]);
@@ -141,6 +138,9 @@ export const validateCreateShop1 = (data) => {
     if(checkLimit(fields[i])) {
       return checkLimit(fields[i]);
     }
+  }
+  if(data.state.value === 'state*') {
+    return { valid: false, msg: `Please select state!` };
   }
   if(!checkForNumber(data.phoneNumber.value)) {
     return { valid: false, msg: `Please enter valid ${data.phoneNumber.placeholder}` };
@@ -176,8 +176,7 @@ export const validateCreateShop1 = (data) => {
     landmark: data.landmark.value,
     city: data.city.value,
     pincode: data.pincode.value,
-    state: data.state.value,
-    country: data.country.value
+    state: data.state.value
   }
   finalData.shopCategories = [];
   let shopcategories = {};
@@ -233,7 +232,7 @@ export const updateProfileValidator = (data, type) => {
     finalData[type] = data[type].value;
   } 
   if(type === 'shopAddress') {
-    let fields = [data.streetAdd, data.landmark, data.city, data.pincode, data.state, data.country];
+    let fields = [data.streetAdd, data.landmark, data.city, data.pincode];
     data.pincode.value = data.pincode.value.toString();
     for(let i=0; i<fields.length; i++) {
       if(forEmpty(fields[i])) {
@@ -242,6 +241,9 @@ export const updateProfileValidator = (data, type) => {
       if(checkLimit(fields[i])) {
         return checkLimit(fields[i]);
       }
+    }
+    if(data.state.value === 'state*') {
+      return { valid: false, msg: `Please select state!` };
     }
     if(!checkForNumber(data.pincode.value)) {
       return { valid: false, msg: `Please enter valid ${data.pincode.placeholder}` };
@@ -252,7 +254,6 @@ export const updateProfileValidator = (data, type) => {
     shopAddress.city = data.city.value;
     shopAddress.pincode = data.pincode.value;
     shopAddress.state = data.state.value;
-    shopAddress.country = data.country.value;
     finalData.shopAddress = shopAddress;
   }
   if(type === 'shopCategories') {
@@ -317,6 +318,23 @@ export const getInput = (field, handler) => {
     />
   );
 }
+export const getRInput = (field, handler) => {
+  return (
+    <RInput
+      key={field.name}
+      type={field.type}
+      placeholder={field.placeholder}
+      value={field.value}
+      name={field.name}
+      minLength={field.minLength}
+      maxLength={field.maxLength}
+      required={field.required}
+      onChange={(e) => handler(e)}
+      fontsize={field.fontsize}
+      bradius={field.bradius}
+    />
+  );
+}
 export const getSelect = (field, options, handler, type) => {
   return (
     <Select 
@@ -328,15 +346,58 @@ export const getSelect = (field, options, handler, type) => {
     />
   );
 }
-
-export const itemValidator = (name, category, mUnit, mValue, description, price, photo) => {
+export const getRSelect = (field, options, handler, type) => {
+  return (
+    <RSelect 
+      name={field.name}
+      value={field.value}
+      options={options}
+      onChange={(e) => handler(e, type)}
+      bradius={field.bradius}
+    />
+  );
+}
+export const itemValidator = (name, category, mUnit, mUnits, mpValues, description, photo) => {
   let finalData = {};
   let munit = {...mUnit};
-  let mvalue = {...mValue};
   munit.placeholder = 'Item\'s Measure Unit';
-  mvalue.placeholder = 'Measure Unit\'s value';
-  let fields = [name, munit, mvalue,description, price];
+  let fields = [name];
+  if(mUnits.value === 'other') {
+    fields.push(munit);
+  }
+  for(let i=0; i<fields.length; i++) {
+    if(forEmpty(fields[i])) {
+      return forEmpty(fields[i]);
+    }
+    if(checkLimit(fields[i])) {
+      return checkLimit(fields[i]);
+    }
+  }
+  if(mUnits.value === 'select*') {
+    return { valid: false, msg: `Please Select Measure Unit` };
+  }
+  if(mpValues.length === 0) {
+    return { valid: false, msg: `Please enter Measure Unit's value and price!` };
+  }
+  if(checkLimit(description)) {
+    return checkLimit(description);
+  }
+  finalData.name = name.value;
+  finalData.category = category;
+  if(mUnits.value === 'other') {
+    finalData.mUnit = mUnit.value;
+  } else {
+    finalData.mUnit = mUnits.value;
+  }
+  finalData.mpValues = mpValues;
+  finalData.description = description.value;
+  finalData.photo = photo;
+  return { valid: true, data: finalData };
+}
+export const mpValueValidator = (mValue, price) => {
   price.value = price.value.toString();
+  mValue.placeholder = 'Measure value';
+  let fields = [mValue, price];
   for(let i=0; i<fields.length; i++) {
     if(forEmpty(fields[i])) {
       return forEmpty(fields[i]);
@@ -348,14 +409,7 @@ export const itemValidator = (name, category, mUnit, mValue, description, price,
   if(!checkForNumber(price.value)) {
     return { valid: false, msg: `Please enter valid Item Price` };
   }
-  finalData.name = name.value;
-  finalData.category = category;
-  finalData.mUnit = mUnit.value;
-  finalData.mValue = mValue.value;
-  finalData.description = description.value;
-  finalData.price = price.value;
-  finalData.photo = photo;
-  return { valid: true, data: finalData };
+  return { valid: true };
 }
 
 export const compareCategory = (a,b) => {
@@ -371,4 +425,24 @@ export const compareItem = (a,b) => {
   if (a.name > b.name)
     return 1;
   return 0;
+}
+
+export const domainNameChecker = (domain) => {
+  const list = [
+    'auth',
+    'auth/logout',
+    'auth/tandc/privacy-policy',
+    'auth/tandc',
+    'shop',
+    'shop/inventory',
+    'shop/profile',
+    'shop/orders',
+    'shop/create'
+  ]
+  for(let i=0; i<list.length; i++) {
+    if(domain === list[i]) {
+      return false;
+    }
+  }
+  return true;
 }

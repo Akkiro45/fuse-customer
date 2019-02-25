@@ -1,6 +1,5 @@
 .Title {
-  /* background-color: cadetblue; */
-  color: #006989;
+  color: #2874ff;
   font-size: 1.2em;
   font-weight: bold;
   text-align: center;
@@ -10,7 +9,7 @@
   margin: auto;
 }
 .Error {
-  color: red;
+  color: #ff0000;
   text-align: center;
   font-size: 1em;
 }

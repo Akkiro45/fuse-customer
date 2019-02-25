@@ -2,7 +2,6 @@
 .Danger {
   width: 40%;
   height: 45px;
-  /*  margin-left: 20%; */
   margin-top: 2%; 
   background-color: white;
   border: none;
@@ -13,24 +12,23 @@
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 3px;
-  color: #006989;
+  color: #2874ff;
   cursor: pointer;
-  border: 1px solid #006989;
+  border: 1px solid #2874ff;
   outline: none;
 }
 .Danger {
-  color: red;
-  border: 1px solid red;
+  color: #ff0000;
+  border: 1px solid #ff0000;
 }
 
 .Button:hover,
 .Button:active {
-  color: white;
-  background-color: #006989;
-  /* border: 1px solid white; */
+  background-color: #b0ccff;
+  border: 1px solid #b0ccff;
 }
 .Danger:hover,
 .Danger:active {
   color: white;
-  background-color: red;
+  background-color: #ff0000;
 }

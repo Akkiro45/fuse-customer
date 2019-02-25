@@ -1,9 +1,8 @@
 .LabelIn {
-  color: #006989;
+  color: #2874ff;
   font-weight: bold;
   font-size: 1.1em;
-  border-bottom: 2px solid #006989;
-  /* word-wrap: break-word; */
+  border-bottom: 2px solid #ccc;
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;

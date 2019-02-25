@@ -1,43 +1,40 @@
 .Item {
-  /* background-color: tomato; */
   width: 200px;
   height: 100%;
   cursor: pointer;
   display: inline-block;
   margin-right: 10px;
 }
-
 .Item:hover {
-  /* box-shadow: 3px 3px 4px #ccc, -3px -3px 4px #ccc; */
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
-
 .Photo {
-  /* background-color: aqua; */
   height: 80%;
   width: 95%;
   margin: auto;
-  border: 1px solid #006989;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 4px;
 }
 .Img {
-  /* width: 100%;
-  height: 100%; */
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
 }
 .Name {
-  /* background-color: darkorchid; */
   box-sizing: border-box;
   margin: auto;
   width: 95%;
   height: 20%;
   text-align: center;
   font-weight: bold;
-  color: #006989;
+  color: #2874ff;
   overflow: hidden;
   position: relative;
   top: 10px;
-  /* word-wrap: break-word; */
-  /* float: left; */
-  /* word-wrap: break-word; */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }

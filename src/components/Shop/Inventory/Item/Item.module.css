@@ -1,0 +1,77 @@
+.Item {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  overflow: auto;
+}
+.Title {
+  text-align: center;
+  font-size: 1.2em;
+  color: #2874ff;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.Inputs {
+  width: 95%;
+  margin: auto;
+  padding-top: 20px;
+}
+.Input,
+.Input1 {
+  width: 88%;
+  height: 25px;
+  border-radius: 4px;
+  max-width: 600px;
+}
+.Mul,
+.Mul1 {
+  width: 100%;
+  height: 25px; 
+}
+.Mul1 {
+  margin: 4px 0;
+}
+.Ins {
+  width: 88%;
+  max-width: 600px;
+  float: left;
+} 
+.Input1,
+.Value {
+  width: 50%;
+  float: left;
+}
+.Value {
+  padding-left: 8px;
+  width: calc(50% - 10px);
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.Icon,
+.CIcon {
+  height: 100%;
+  font-size: 1.6em;
+  float: left;
+}
+.CIcon {
+  font-size: 1.3em;
+  margin-left: 4px;
+}
+.Buttons {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+} 
+.BIcon {
+  font-size: 1.2em;
+  float: left;
+  margin-left: 4px;
+}
+.Error {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}

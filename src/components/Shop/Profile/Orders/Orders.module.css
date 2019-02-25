@@ -6,8 +6,8 @@
   width: 165px;
   font-size: 1.1em;
   font-weight: bold;
-  color: #006989;
-  opacity: 0.8;
+  color: #444;
+  opacity: 0.7;
   float: left;
 }
 .Count {
@@ -15,6 +15,6 @@
   float: right;
   font-size: 1.2em;
   font-weight: bold;
-  color: #006989;
+  color: #2874ff;
   overflow: hidden;
 }

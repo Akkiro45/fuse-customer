@@ -7,14 +7,13 @@ import Label from '../../../components/Shop/Profile/Label/Label';
 import Label1 from '../../../components/Shop/Label/Label';
 import Space from '../../../components/Shop/Space/Space';
 import Aux from '../../../hoc/Auxx/Auxx';
-// import Spinner from '../../../components/UI/Spinner/Spinner';
 import Spinner from '../../../components/UI/SpinnerCenter/SpinnerCenter';
 import ErrorHandler from '../../../hoc/ErrorHandler/ErrorHandler';
 import LabelIn from '../../../components/Shop/Profile/LabelIn/LabelIn';
 import EditModal from '../../../components/Shop/Profile/EditModal/EditModal';
 import { getSelect ,getInput, updateObject, updateProfileValidator } from '../../../shared/utility';
 import { ShopState } from '../../../shared/shopState';
-import { shopCategories, linksType, deliveryService } from '../../../shared/option';
+import { shopCategories, linksType, deliveryService, states } from '../../../shared/option';
 import Category from '../../../components/Shop/Category/Category';
 import SocialMedia from '../../../components/Shop/SocialMedia/SocialMedia';
 import ImageUploader from '../../../components/UI/ImageUploader/ImageUploader';
@@ -43,9 +42,7 @@ class Profile extends Component {
   }
   onUpload = () => {
     if(this.state.file) {
-      // console.log('Uploded');
       const updatedshopPhoto = updateObject(this.state.shopPhoto, { name: this.state.file.name, type: this.state.file.type });
-      // const updateData = updateObject(this.state.data, { shopPhoto: updatedshopPhoto });
       this.setState({ uploded: true, shopPhoto: updatedshopPhoto, show: false, edit: null });
     } else {
       this.setState({ editError: 'Please Select Photo!' });
@@ -95,10 +92,9 @@ class Profile extends Component {
       let landmark = updateObject(this.state.landmark, { value: this.props.profile.shopAddress[0].landmark });
       let city = updateObject(this.state.city, { value: this.props.profile.shopAddress[0].city });
       let pincode = updateObject(this.state.pincode, { value: this.props.profile.shopAddress[0].pincode });
-      let state = updateObject(this.state.state, { value: this.props.profile.shopAddress[0].state });
-      let country = updateObject(this.state.country, { value: this.props.profile.shopAddress[0].country });     
+      let state = updateObject(this.state.state, { value: this.props.profile.shopAddress[0].state });     
       obj = {
-        streetAdd, landmark, city, pincode, state, country
+        streetAdd, landmark, city, pincode, state
       };
     } else if(type === 'shopCategories') {
       obj = {
@@ -165,24 +161,31 @@ class Profile extends Component {
     } else if(this.state.edit === 'phoneNumber') {
       compo = this.getPopup('Phone Number', this.state.phoneNumber, this.inputChangedHandler, { phoneNumber: this.state.phoneNumber }, 'phoneNumber');
     } else if(this.state.edit === 'shopAddress') {
-      let arr = [this.state.streetAdd, this.state.landmark, this.state.city, this.state.pincode, this.state.state, this.state.country];
+      let arr = [this.state.streetAdd, this.state.landmark, this.state.city, this.state.pincode];
       let inputs = arr.map((el, i) => {
         return (
           <Aux key={i} >
-            <Space />
+            <Space height='5px' />
             <Label no >{el.placeholder}</Label>
-            <Space height='10px' />
+            <Space height='5px' />
             {getInput(el, this.inputChangedHandler)}
           </Aux>
         );
       });
+      inputs.push(
+        <Aux key={'state'} >
+          <Space height='5px' />
+          <Label no >State</Label>
+          <Space height='5px' />
+          {getSelect(this.state.state, states, this.onSelectHandler, 'state')}
+        </Aux>
+      );
       let body = {
         streetAdd: this.state.streetAdd,
         landmark: this.state.landmark,
         city: this.state.city,
         pincode: this.state.pincode,
-        state: this.state.state,
-        country: this.state.country
+        state: this.state.state
       }
       compo = (
         <EditModal 
@@ -282,7 +285,6 @@ class Profile extends Component {
       if(!this.props.profile.isStatic) {
         orders = (
           <div style={{ height: 'auto' }} >
-            <Space />
             <Order label='Total Orders' count={this.props.profile.orders.totalOrders} />
           </div>
         );
@@ -308,17 +310,19 @@ class Profile extends Component {
             <LabelIn >{this.props.profile.cust.email}</LabelIn>
             <Space />
           </div>
-          <hr />
+          <hr style={{ border: '1px solid #eee' }} />
           <div className={module.ShopProfile} >
             <div className={module.ProfileTitle} >
               Shop Profile
             </div>
             <Space />
             
-            <Label onClick={() => this.onEditHandler('shopPhotos')} >Shop Photo</Label>
+            <div className={module.PhotoLabel} >
+              <Label onClick={() => this.onEditHandler('shopPhotos')} >Shop Photo</Label>
+            </div>
             <div className={module.Photo} >
               {/* eslint-disable-next-line  */}
-              <img src={'https://www.image.ie/images/no-image.png'} />
+              <img src={'https://as2.ftcdn.net/jpg/01/24/00/49/500_F_124004924_EjrA0S1BFvp3ScWCFMzRcgTnDuX3dGZh.jpg'} />
             </div>
             <Space />
             
@@ -329,11 +333,11 @@ class Profile extends Component {
             
             <Label no >Domain Name</Label>
             <Space height='5px' />
-            <LabelIn>https://fuse.com/{this.props.profile.shopSrchName}</LabelIn>
-            
+            <LabelIn>https://thefuse.in/{this.props.profile.shopSrchName}</LabelIn>
+            <Space />
+
             {orders}
 
-            <Space />
             <Label onClick={() => this.onEditHandler('shopAddress')} >Shop Address</Label>
             <Space height='5px' />
             <Label1>Street Address :</Label1>
@@ -372,7 +376,7 @@ class Profile extends Component {
             <LabelIn>{this.props.profile.description}</LabelIn>
 
             <Space />
-            <Label no={this.props.profile.isStatic ? false : true} onClick={() => this.onEditHandler('isStatic')} >Delivry Service</Label>
+            <Label no={this.props.profile.isStatic ? false : true} onClick={() => this.onEditHandler('isStatic')} >Delivery Service</Label>
             <LabelIn>{this.props.profile.isStatic ? 'No' : 'Yes'}</LabelIn>
             
             {!this.props.profile.isStatic ? (<Aux>

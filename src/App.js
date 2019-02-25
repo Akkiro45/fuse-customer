@@ -11,10 +11,10 @@ import SpinnerPage from './components/UI/SpinnerPage/SpinnerPage';
 import Signup from './conatainer/Auth/Signup/Signup';
 import Signin from './conatainer/Auth/Signin/Signin';
 import Logout from './conatainer/Auth/Logout/Logout';
-// import Layout from './conatainer/Layout/Layout';
-const asyncCreate = asyncComponent(() => {
-  return import('./conatainer/Shop/Create/Create');
-});
+import Create from './conatainer/Shop/Create/Create';
+// const asyncCreate = asyncComponent(() => {
+//   return import('./conatainer/Shop/Create/Create');
+// });
 const AsyncLayout = asyncComponent(() => {
   return import('./conatainer/Layout/Layout');
 });
@@ -73,7 +73,7 @@ class App extends Component {
             <Route path="/auth/logout" component={Logout} />
             <Route path="/auth/tandc/privacy-policy" component={AsyncPrivacyPolicy} />
             <Route path="/auth/tandc" component={AsyncTAC} />
-            <Route path="/shop/create" component={asyncCreate} />
+            <Route path="/shop/create" component={Create} />
             <Redirect to="/shop/create" />
           </Switch>
         );

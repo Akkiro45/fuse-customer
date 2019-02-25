@@ -6,8 +6,8 @@ import ButtonLink from '../UI/ButtonLink/ButtonLink';
 
 const index = (props) => {
   let style = {
-    height: "100%",
-    backgroundSize: '360px 375px',
+    height: "80%",
+    backgroundSize: '181px 242px',
     backgroundImage: `url(${BG})`,  
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'
@@ -17,7 +17,7 @@ const index = (props) => {
       <div className={module.Showcase} >
         <div style={style}  >
           <div className={module.Fuse} >
-            Fuse
+            {/* Fuse */}
           </div>
           <div className={module.TagLine} >
             Make your shop online!

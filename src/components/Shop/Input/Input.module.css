@@ -9,7 +9,7 @@
 .Input:focus,
 .Input:active,
 .Input:hover {
-  border: 2px solid #33addd;
+  border: 2px solid #b0ccff;
 }
 
 @media( max-width: 600px ) {

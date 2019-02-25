@@ -1,82 +1,79 @@
 .Box {
   box-sizing: border-box;
-  width: 80%;
+  width: 90%;
   height: auto;
   margin: auto;
   padding: 0;
-  border: 1px solid #33addd;
-  margin-bottom: 5%;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 4px;
 }
 
 .Box:hover {
-  box-shadow: 0 2px 3px #87cefa;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .Container {
   box-sizing: border-box;
   width: 100%;
   height: auto;
-  /* border: 1px solid #006989; */
 }
 
 .TimeAt {
-  /* background-color: crimson; */
   width: 95%;
   margin: auto;
-  color: #006989;
-  /* word-break: break-all; */
+  color: #444;
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
-  font-size: 1.0em;
-  border-bottom: 1px solid #006989;
+  font-size: 1em;
+  border-bottom: 1px solid #eee;
 }
 
 .Footer {
   box-sizing: border-box;
   width: 100%;
-  /* height: 50px; */
   height: auto;
-  border-top: 2px solid #006989;
+  border-top: 2px solid #eee;
   margin: auto;
-  color: #006989;
+  color: #2874ff;
   font-weight: bold;
   font-size: 1.2em;
   text-align: center;
   cursor: pointer;
-  /* display: inline-flex; */
 }
 
 .Container .Header {
   box-sizing: border-box;
   width: 100%;
-  /* background-color: gray; */
-  /* border: 1px solid black; */
   height: auto;
   width: 100%;
 }
-/* .Container .Info { */
-  .Info {
+.Info,
+.InfoH {
   box-sizing: border-box;
   width: 100%;
   height: 100px;
-  /* background-color: aqua; */
+}
+.InfoH {
+  width: 95%;
+  margin: auto;
 }
 .Container .Divider {
   box-sizing: border-box;
   width: 95%;
-  height: 15px;
-  background-color: #006989;
+  height: 7px;
+  background-color: #2874ff;
   margin: auto;
 }
 
 .Header .Name {
   width: 95%;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 1.3em;
-  color: #006989;
+  color: #444;
   font-weight: bold;
-  /* background-color: #fff; */
 }
 
 .Header .Time {
@@ -84,7 +81,7 @@
   margin: auto;
   margin-left: 7%;
   display: flex;
-  color: #4F5151;
+  color: #444;
   font-size: 1.2em;
 }
 
@@ -92,12 +89,10 @@
   width: 90%;
   margin: auto;
   margin-left: 7%;
-  /* background-color: red; */
   height: auto;
-  color: #4F5151;
-  font-size: 1.2em;
+  color: #444;
+  font-size: 1em;
   display: inline-block;
-  /* word-break: break-all; */
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
@@ -116,40 +111,27 @@
 }
 
 .Control {
-  /* background-color: yellow; */
   width: 95%;
   height: auto;
   margin: auto;
   display: block;
 }
 
-.AlignInput {
-  width: 75%;
-  /* background-color: chartreuse; */
-  /* margin-left: 7%; */
-  padding-left: 25%;
-} 
-
 .Buttons {
-  /* background-color: teal; */
   width: 100%;
   height: 100px;
 }
 
 .ButtonRight {
-  /* background-color: #4F5151; */
   box-sizing: border-box;
   width: 50%;
   height: 100%;
   float: right;
   text-align: center;
   padding-top: 25px;
-  /* position: relative; */
-  /* top: 30%; */
 }
 
 .ButtonLeft {
-  /* background-color: aquamarine; */
   box-sizing: border-box;
   width: 50%;
   height: 100%;
@@ -159,77 +141,81 @@
 }
 
 .Form {
-  /* background-color: tomato; */
   margin: auto;
   width: 100%;
-  height: 205px;
+  height: 165px;
+}
+
+.CustChoice {
+  width: 100%;
+  height: 45px;
+  text-align: center;
+  overflow: auto;
+}
+.Msg1 {
+  color: #444;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .DeliveryTime {
-  /* background-color: yellow; */
   width: 100%;
-  height: 40%;
+  height: 100px;
 }
 
 .DateText {
-  /* background-color: black; */
   text-align: center;
   font-size: 1.2em;
-  color: #006989;
+  color: #444;
 }
 .From,
 .To {
-  /* background-color: violet; */
   width: 100%;
   height: 35%;
   font-size: 1.2em;
-  /* padding-left: 10%; */
   text-align: center;
 }
 .TimeText {
   float: left;
   margin-left: 15%;
   width: 10%;
-  color: #006989;
+  color: #444;
 }
 
 .Delivery {
-  /* background-color: turquoise; */
   width: 100%;
   height: 20px;
   color: white;
   font-size: 1.1em;
   text-align: center;
-  color: #006989;
+  color: #444;
   font-weight: bold;
 }
 
 .Summary {
-  /* background-color: springgreen; */
   font-size: 0.9em;
-  color: #006989;
+  color: #444;
   width: 100%;
   height: auto;
   margin-top: 2%;
   margin-bottom: 2%;
 }
 .Msg {
+  color: #444;
   overflow: auto;
-  /* max-height: 30px; */
 }
 .NoItem {
-  /* background-color: yellow; */
   font-size: 1.2em;
   text-align: center;
-  color: #006989;
+  color: #2874ff;
   font-weight: bold;
-  border-top: 2px solid #006989;
+  border-top: 2px solid #2874ff;
 }
 
  
 @media(max-width: 600px) {
   .Header .Address {
-    font-size: 1em;
+    font-size: 0.8em;
   }
   .Header .Name {
     font-size: 1.2em;
@@ -250,6 +236,12 @@
 }
 
 @media( max-width: 650px ) {
+  .Box {
+    width: 95%;
+  }
+  .TimeAt {
+    font-size: 0.8em;
+  }
   .Buttons {
     height: 60px;
   }
@@ -262,14 +254,13 @@
   }
   .Footer,
   .NoItem {
-    /* height: 32px; */
     font-size: 0.8em;
   }
 }
 
 @media( max-width:570px ) {
   .Form {
-    height: 250px;
+    height: 200px;
   }
   .TimeText {
     clear: both;
@@ -277,34 +268,26 @@
     width: 100%;
   }
   .DeliveryTime {
-    height: 50%;
-    /* text-align:unset; */
+    height: 130px;
   }
   .From,
   .To {
-    height: 50%;
+    height: 40%;
   }
   .Summary {
     font-size: 0.8em;
   }
 }
 
-@media(max-width: 450px) {
+@media(max-width: 460px) {
   .Form {
-    /* height: 300px; */
+    height: 225px;
   }
   .DeliveryTime {
-    height: 55%;
-    /* text-align:unset; */
+    height: 160px;
   }
   .From,
   .To {
     height: 45%;
-  }
-}
-
-@media( max-width: 630px ) {
-  .Form {
-    height: 300px;
   }
 }

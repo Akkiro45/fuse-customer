@@ -2,13 +2,13 @@
   position: fixed;
   z-index: 500;
   background-color: white;
-  width: 80%;
-  max-height: 60%;
+  width: 95%;
+  max-height: 70%;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px black;
   padding: 16px;
-  left: 10%;
-  top: 30%;
+  left: 2.5%;
+  top: 15%;
   box-sizing: border-box;
   transition: all 0.3s ease-out;
   overflow: auto;
@@ -16,7 +16,7 @@
 
 @media (min-width: 600px) {
   .Modal {
-      width: 500px;
-      left: calc(50% - 250px);
+      width: 750px;
+      left: calc(50% - 375px);
   }
 }

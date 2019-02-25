@@ -1,0 +1,37 @@
+.DeliveryTimeLabel {
+  width: 100%;
+  margin: auto;
+  font-size: 15px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  border-top: 1px solid #eee;
+  padding: 5px 0;
+}
+.MainLabel {
+  color: #444;
+  font-weight: bold;
+}
+.Label {
+  width: 100px;
+}
+.Container {
+  padding-top: 5px;
+}
+.Time {
+  margin-left: 10px;
+  color: #2874ff;
+  font-weight: bold;
+}
+
+@media( max-width: 650px ) {
+  .DeliveryTimeLabel {
+    font-size: 14px;
+  }
+}
+
+@media(max-width: 375px) {
+  .DeliveryTimeLabel {
+    font-size: 12px;
+  }
+} 

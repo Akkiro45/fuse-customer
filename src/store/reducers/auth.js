@@ -1,7 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
-// import { authFailConfirm } from '../actions';
-// import { keepShop } from '../actions/auth';
 
 const initialState = {
   token: null,

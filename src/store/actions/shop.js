@@ -2,6 +2,7 @@ import axios from '../../axios';
 
 import * as actionTypes from './actionTypes';
 import { shopFound } from './index';
+import { domainNameChecker } from '../../shared/utility';
 
 export const checkDomainStart = () => {
   return {
@@ -50,7 +51,8 @@ export const createShopSuccess = () => {
 export const checkShopDomain = (name) => {
   return dispatch => {
     dispatch(checkDomainStart());
-    axios.get(`/shop/check-name/${name}`)
+    if(domainNameChecker(name)) {
+      axios.get(`/shop/check-name/${name}`)
       .then(response => {
         if(response) {
           if(response.data.status === 'ok') {
@@ -65,6 +67,9 @@ export const checkShopDomain = (name) => {
       .catch(error => {
         dispatch(checkDomainFail('Domain name does not available!'));
       });
+    } else {
+      dispatch(checkDomainFail('Domain name does not available!'));
+    }
   }
 }
 

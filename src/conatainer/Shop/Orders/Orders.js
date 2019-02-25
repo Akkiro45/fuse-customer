@@ -30,7 +30,6 @@ class Orders extends Component {
     this.props.fetchOrders(1, this.state.pageSize, parseInt(e.target.value), this.props.token);
   }
   componentDidMount() {
-    // if(!this.props.orders)
       this.props.fetchOrders(this.state.pageNumber, this.state.pageSize, 2, this.props.token);
   }
   onRefresh = () => {
@@ -38,10 +37,9 @@ class Orders extends Component {
     this.setState({ pageNumber: 1 });
   }
   onReject = (orderID) => {
-    this.props.onUpdateOrder(this.props.token, { orderID, type: 5, custRejectMsg: '' });
+    this.props.onUpdateOrder(this.props.token, { orderID, type: 5 });
   }
   onConfirm = (data, orderID) => {
-    // console.log('Final data: ', { ...data, orderID, type: 4 });
     this.props.onUpdateOrder(this.props.token, { ...data, orderID, type: 4 });
   }
   onDelivered = (orderID) => {
@@ -126,13 +124,10 @@ class Orders extends Component {
                     time={time.timeStamp}
                     amount={order.totalCost}
                     phoneNumber={order.phoneNumber}
-                    userMsg={order.userMsg}
-                    custAcceptMsg={order.custAcceptMsg}
-                    custRejectMsg={order.custRejectMsg}
                     from={order.deliveryTime ? order.deliveryTime.from : null}
                     to={order.deliveryTime ? order.deliveryTime.to : null}
-                    expirationTime={order.expirationTime / 60000}
                     items={order.items}
+                    allowCancelOrder={order.allowCancelOrder}
                     reject={reject}
                     delivered={delivered}
                     cancelled={cancelled}

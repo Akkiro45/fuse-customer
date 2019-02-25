@@ -6,7 +6,8 @@
 }
 
 .NavItem a {
-  color: white;
+  color: #2874ff;
+  font-weight: bold;
   font-size: 1.2em;
   text-decoration: none;
   width: 100%;
@@ -16,5 +17,5 @@
 .NavItem a:hover,
 .NavItem a:active,
 .NavItem a.active { 
-  color: #33addd;
+  color: #b0ccff;
 }

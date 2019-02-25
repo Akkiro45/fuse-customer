@@ -27,7 +27,7 @@ const nav = (props) => {
   return (
       <div className={module.Container} >
           <ul className={module.NavigationItems} >
-            <h1>FUSE</h1>
+            <h1>Fuse</h1>
             {links}
           </ul>
       </div>

@@ -11,27 +11,15 @@ const block = (props) => {
     fontWeight: 'bold'
   }
   if(props.color1 === 'red') {
-    style1.color = 'red';
+    style1.color = '#ff0000';
   } else if(props.color1 === 'green') {
-    style1.color = '#27df46';
+    style1.color = '#00d348';
   }
   if(props.color2 === 'red') {
-    style2.color = 'red';
+    style2.color = '#ff0000';
   } else if(props.color2 === 'green') {
-    style2.color = '#27df46';
+    style2.color = '#00d348';
   }
-  // if(props.red1) {
-  //   style1.color = 'red';
-  // }  
-  // if(props.green1) {
-  //   style1.color = '#27df46';
-  // }  
-  // if(props.green2) {
-  //   style2.color = '#27df46'
-  // }  
-  // if(props.red2) {
-  //   style2.color = 'red';
-  // }
   return (
     <Aux>
       <div className={module.InfoContainer} >
@@ -42,7 +30,7 @@ const block = (props) => {
           </div>
           <div className={module.Right} > 
             <span className={module.Icon} >{props.rightIcon1}</span>
-            <span className={module.Text} style={style1} >{props.rightText1}</span>
+            <span className={module.Text1} style={style1} >{props.rightText1}</span>
           </div>
         </div>
         <div className={module.Icon2} >
@@ -52,7 +40,7 @@ const block = (props) => {
           </div>
           <div className={module.Right} > 
             <span className={module.Icon} >{props.rightIcon2}</span>
-            <span className={module.Text} style={style2}>{props.rightText2}</span>
+            <span className={module.Text1} style={style2}>{props.rightText2}</span>
           </div>
         </div>
       </div>

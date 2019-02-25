@@ -5,14 +5,13 @@ import module from './Inventory.module.css';
 import * as actions from '../../../store/actions/index';
 import Aux from '../../../hoc/Auxx/Auxx';
 import Items from '../../../components/Shop/Inventory/Items/Items';
-// import Spinner from '../../../components/UI/Spinner/Spinner';
 import Spinner from '../../../components/UI/SpinnerCenter/SpinnerCenter';
 import ErrorHandler from '../../../hoc/ErrorHandler/ErrorHandler';
 import Button from '../../../components/UI/FormButton/Button';
-import { updateObject, checkwhiteSpaces, itemValidator, compareCategory, compareItem } from '../../../shared/utility';
-
+import { updateObject, checkwhiteSpaces, itemValidator, mpValueValidator, compareCategory, compareItem } from '../../../shared/utility';
+import  { mUnits  as mUnitsOptions } from '../../../shared/option';
 import AddCat from '../../../components/Shop/Inventory/AddCat/AddCat';
-import ItemInfo from '../../../components/Shop/Inventory/ItemInfo/ItemInfo';
+import Item from '../../../components/Shop/Inventory/Item/Item';
 
 class Inventory extends Component {
   state = {
@@ -40,7 +39,14 @@ class Inventory extends Component {
       maxLength: '250',
       required: true,
       width: '80%',
-      height: '35px'
+      height: '35px',
+      bradius: '4px'
+    },
+    mUnits: {
+      name: 'mUnits',
+      value: 'select*',
+      type: 3,
+      bradius: '4px'
     },
     mUnit: {
       type: 'text',
@@ -48,10 +54,11 @@ class Inventory extends Component {
       value: '',
       name: 'mUnit',
       minLength: '1',
-      maxLength: '250',
+      maxLength: '8',
       required: true,
       width: '80%',
-      height: '35px'
+      height: '35px',
+      bradius: '4px'
     },
     mValue: {
       type: 'text',
@@ -61,8 +68,9 @@ class Inventory extends Component {
       minLength: '1',
       maxLength: '10',
       required: true,
-      width: '80%',
-      height: '35px'
+      width: '95%',
+      height: '35px',
+      bradius: '4px'
     },
     price: {
       type: 'tel',
@@ -70,22 +78,25 @@ class Inventory extends Component {
       value: '',
       name: 'price',
       minLength: '1',
-      maxLength: '250',
+      maxLength: '10',
       required: true,
       width: '80%',
-      height: '35px'
+      height: '35px',
+      bradius: '4px'
     },
     description: {
       type: 'text',
       placeholder: 'Item Description',
       value: '',
       name: 'description',
-      minLength: '1',
+      minLength: '0',
       maxLength: '350',
-      required: true,
+      required: false,
       width: '80%',
-      height: '35px'
+      height: '35px',
+      bradius: '4px'
     },
+    mpValues: [],
     itemID: null,
     itemCategorie: null,
     file: null,
@@ -93,13 +104,37 @@ class Inventory extends Component {
     itemPhoto: null,
     uploded: false
   }
+  onAddValue = () => {
+    let mValue = updateObject(this.state.mValue, { value: '' });
+    let price = updateObject(this.state.price, { value: '' });
+    const msValue = this.state.mValue.value;
+    const pValue = this.state.price.value;
+    const valid = mpValueValidator(this.state.mValue, this.state.price); 
+    if(valid.valid) {
+      let mpValues = [...this.state.mpValues];
+      mpValues = mpValues.filter(v => v.mValue !== msValue);
+      mpValues.push({ mValue: msValue, price: pValue });
+      this.setState({ mpValues, mValue, price });
+    } else {
+      this.setState({ error: valid.msg });
+    }
+  }
+  onRmvValue = (value) => {
+    this.setState(prevState => {
+      let mpValues = [...prevState.mpValues];
+      mpValues = mpValues.filter(v => v.mValue !== value);
+      return { mpValues };
+    });
+  }
   resSet = () => {
     let name = updateObject(this.state.name, { value: '' });
     let mUnit = updateObject(this.state.mUnit, { value: '' });
+    let mUnits = updateObject(this.state.mUnits, { value: 'select*' });
     let mValue = updateObject(this.state.mValue, { value: '' });
-    let price = updateObject(this.state.price, { value: '' });
+    let price = updateObject(this.state.price, { value: '' });  
     let description = updateObject(this.state.description, { value: '' });
-    this.setState({ icon: false, item: false, name, mUnit, mValue, price, description, file: null, image: null, itemPhoto: null, uploded: false });
+    let mpValues = [];
+    this.setState({ icon: false, item: false, name, mUnit, mUnits, mValue, mpValues, price, description, file: null, image: null, itemPhoto: null, uploded: false });
   }
   onFileSelect = (e) => {
     if(e.target.files && e.target.files[0]) {
@@ -113,9 +148,7 @@ class Inventory extends Component {
   }
   onUpload = () => {
     if(this.state.file) {
-      console.log('Uploded');
       const updatedItemPhoto = updateObject(this.state.itemPhoto, { name: this.state.file.name, type: this.state.file.type });
-      // const updateData = updateObject(this.state.data, { itemPhoto: updatedItemPhoto });
       this.setState({ uploded: true, itemPhoto: updatedItemPhoto, error: null });
     } else {
       this.setState({ error: 'Please Select Photo!' });
@@ -125,7 +158,7 @@ class Inventory extends Component {
     if(!this.state.uploded) {
       this.setState({ error: 'Please Upload Photo!' });
     } else {
-      const r = itemValidator(this.state.name, this.state.itemCategorie, this.state.mUnit, this.state.mValue,this.state.description, this.state.price, this.state.itemPhoto);
+      const r = itemValidator(this.state.name, this.state.itemCategorie, this.state.mUnit, this.state.mUnits, this.state.mpValues,this.state.description, this.state.itemPhoto);
       if(r.valid === false) {
         this.setState({ error: r.msg });
       } else {
@@ -137,7 +170,6 @@ class Inventory extends Component {
           this.props.updateInv(this.props.token, { itemID: this.state.itemID  }, type);
         }
         this.resSet();
-        // this.setState({ icon: false, item: false });
       }
     }
   }
@@ -153,22 +185,38 @@ class Inventory extends Component {
   onItemClick = (data) => {
     let name = updateObject(this.state.name, { value: data.name });
     let mUnit = updateObject(this.state.mUnit, { value: data.mUnit });
-    let mValue = updateObject(this.state.mValue, { value: data.mValue });
-    let price = updateObject(this.state.price, { value: data.price });
+    let mUnits;
+    let flag = false;
+    for(let i=0; i<mUnitsOptions.length; i++) {
+      if(mUnitsOptions[i].value === data.mUnit) {
+        flag = true;
+        break;
+      }
+    }
+    if(flag) {
+      mUnits = updateObject(this.state.mUnits, { value: data.mUnit });
+      mUnit = updateObject(this.state.mUnit, { value: '' });
+    } else {
+      mUnits = updateObject(this.state.mUnits, { value: 'other' });
+      mUnit = updateObject(this.state.mUnit, { value: data.mUnit });
+    }
+    let mpValues;
+    mpValues = data.mpValues;
+    // let price = updateObject(this.state.price, { value: data.price });
     let description = updateObject(this.state.description, { value: data.description });
-    this.setState({ item: true, itemID: data._id, name, mUnit, mValue,price, description, itemPhoto: data.photo, uploded: true, itemCategorie: data.category });
+    this.setState({ item: true, itemID: data._id, name, mUnit, mUnits, mpValues, description, itemPhoto: data.photo, uploded: true, itemCategorie: data.category, error: null });
   }
   onIconClick = (category) => {
-    this.setState({ icon: true, itemCategorie: category });
+    this.setState({ icon: true, itemCategorie: category, error: null, mpValues: [] });
   }
   onAddCatClick = () => {
-    this.setState({ cat: true });
+    this.setState({ cat: true, error: null });
   }
   onRemoveCatClick = (id) => {
     this.props.updateInv(this.props.token, { categoryID: id}, '3');
   } 
   onClear = (type) => {
-    this.setState({ [type]: false });
+    this.setState({ [type]: false, error: null });
     this.resSet();
   }
   componentDidMount() {
@@ -178,6 +226,11 @@ class Inventory extends Component {
     const updatedField = updateObject(this.state[e.target.name], { value: e.target.value });
     this.setState({ [e.target.name]: updatedField, error: null });
   }
+  onSelectHandler = (e, type) => {
+    let field;
+    field = updateObject(this.state[type], { value: e.target.value });
+    this.setState({ [type]: field, error: null });
+  }
   render() {
     let error = null;
     if(this.props.error) {
@@ -186,28 +239,34 @@ class Inventory extends Component {
 
     let show = null;
     if(this.state.item) {
-      show = <ErrorHandler 
-        error={
-          <ItemInfo 
-            update
-            title='Update Item'
-            updateButton='Update Item'
-            deleteButton='Delete Item'
-            name={this.state.name}
-            mUnit={this.state.mUnit}
-            mValue={this.state.mValue}
-            price={this.state.price}
-            description={this.state.description}
-            inputHandler={this.inputChangeHandler}
-            src={this.state.image}
-            onFileSelect={this.onFileSelect}
-            onUpload={this.onUpload}
-            error={this.state.error}
-            updateButtonHandler={() => this.onItemHandler('5')}
-            deleteButtonHandler={() => this.onItemHandler('4')}
-          />
-        } 
-        errorConformedhandler={() => this.onClear('item')} />
+      // show = <ErrorHandler 
+      //   error={
+      //     <ItemInfo 
+      //       update
+      //       title='Update Item'
+      //       updateButton='Update Item'
+      //       deleteButton='Delete Item'
+      //       name={this.state.name}
+      //       mUnit={this.state.mUnit}
+      //       mUnits={this.state.mUnits}
+      //       mValue={this.state.mValue}
+      //       price={this.state.price}
+      //       description={this.state.description}
+      //       inputHandler={this.inputChangeHandler}
+      //       selectHandler={this.onSelectHandler}
+      //       src={this.state.image}
+      //       onFileSelect={this.onFileSelect}
+      //       onUpload={this.onUpload}
+      //       error={this.state.error}
+      //       updateButtonHandler={() => this.onItemHandler('5')}
+      //       deleteButtonHandler={() => this.onItemHandler('4')}
+      //       onAddMvalue={this.onAddMvalue}
+      //       mValues={this.state.mValues}
+      //       onRmvValue={this.onRmvValue}
+      //     />
+      //   } 
+      //   errorConformedhandler={() => this.onClear('item')} />
+      show = null;
     } else if(this.state.cat) {
       show = <ErrorHandler 
         error={
@@ -220,25 +279,31 @@ class Inventory extends Component {
         } 
         errorConformedhandler={() => this.onClear('cat')} />
     } else if(this.state.icon) {
-      show = <ErrorHandler 
-        error={
-          <ItemInfo 
-            title='Add New Item'
-            fianlButton='Add Item'
-            finalButtonHandler={() => this.onItemHandler('2')}
-            name={this.state.name}
-            mUnit={this.state.mUnit}
-            mValue={this.state.mValue}
-            price={this.state.price}
-            description={this.state.description}
-            inputHandler={this.inputChangeHandler}
-            src={this.state.image}
-            onFileSelect={this.onFileSelect}
-            onUpload={this.onUpload}
-            error={this.state.error}
-          />
-        }
-        errorConformedhandler={() => this.onClear('icon')} />
+      // show = <ErrorHandler 
+      //   error={
+      //     <ItemInfo 
+      //       title='Add New Item'
+      //       fianlButton='Add Item'
+      //       finalButtonHandler={() => this.onItemHandler('2')}
+      //       name={this.state.name}
+      //       mUnit={this.state.mUnit}
+      //       mUnits={this.state.mUnits}
+      //       mValue={this.state.mValue}
+      //       price={this.state.price}
+      //       description={this.state.description}
+      //       inputHandler={this.inputChangeHandler}
+      //       selectHandler={this.onSelectHandler}
+      //       src={this.state.image}
+      //       onFileSelect={this.onFileSelect}
+      //       onUpload={this.onUpload}
+      //       error={this.state.error}
+      //       onAddMvalue={this.onAddMvalue}
+      //       mValues={this.state.mValues}
+      //       onRmvValue={this.onRmvValue}
+      //     />
+      //   }
+      //   errorConformedhandler={() => this.onClear('icon')} />
+      show = null;
     } 
     let items = (
       <div className={module.Empty} >
@@ -279,6 +344,58 @@ class Inventory extends Component {
         </div>
       </Aux>
     );
+    if(this.state.item) {
+      ren = (
+        <Item
+          update
+          title='Update Item'
+          updateButton='Update Item'
+          deleteButton='Delete Item'
+          name={this.state.name}
+          mUnit={this.state.mUnit}
+          mUnits={this.state.mUnits}
+          mValue={this.state.mValue}
+          price={this.state.price}
+          description={this.state.description}
+          inputHandler={this.inputChangeHandler}
+          selectHandler={this.onSelectHandler}
+          src={this.state.image}
+          onFileSelect={this.onFileSelect}
+          onUpload={this.onUpload}
+          error={this.state.error}
+          updateButtonHandler={() => this.onItemHandler('5')}
+          deleteButtonHandler={() => this.onItemHandler('4')}
+          onAddValue={this.onAddValue}
+          mpValues={this.state.mpValues}
+          onRmvValue={this.onRmvValue}
+          onBack={this.onClear}
+        />
+      );
+    } else if(this.state.icon) {
+      ren = (
+        <Item
+          title='Add New Item'
+          fianlButton='Add Item'
+          finalButtonHandler={() => this.onItemHandler('2')}
+          name={this.state.name}
+          mUnit={this.state.mUnit}
+          mUnits={this.state.mUnits}
+          mValue={this.state.mValue}
+          price={this.state.price}
+          description={this.state.description}
+          inputHandler={this.inputChangeHandler}
+          selectHandler={this.onSelectHandler}
+          src={this.state.image}
+          onFileSelect={this.onFileSelect}
+          onUpload={this.onUpload}
+          error={this.state.error}
+          onAddValue={this.onAddValue}
+          mpValues={this.state.mpValues}
+          onRmvValue={this.onRmvValue}
+          onBack={this.onClear}
+        />
+      );
+    } 
     if(this.props.loading) {
       ren = ( 
           <Spinner /> 

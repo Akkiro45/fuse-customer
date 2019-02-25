@@ -10,10 +10,8 @@ import Button from '../UI/Button/Button';
 import Block from './Block/Block';
 import PriceTag from '../UI/Icons/PriceTag/PriceTag';
 import DeliveryRun from '../UI/Icons/DeliveryRun/DeliveryRun';
-import Input from '../UI/Input/Input';
 import ErrorHandler from '../../hoc/ErrorHandler/ErrorHandler';
 import DateTime from '../UI/DateTime/DateTime';
-import ToolTip from '../UI/ToolTip/ToolTip';
 import { validateOrderData } from '../../shared/utility';
 import CheckBox from '../UI/CheckBox/CheckBox';
 import UpArrow from '../UI/Icons/UpArrow/UpArrow';
@@ -22,6 +20,7 @@ import Item from './Item/Item';
 import { dateTimeFormate } from '../../shared/utility';
 import { convertAddress } from '../../shared/utility';
 import Spinner from '../UI/Spinner/Spinner';
+import DeliveryTimeLabel from './DeliveryTimeLabel/DeliveryTimeLabel';
 
 class Order extends Component {
   state = {
@@ -68,14 +67,19 @@ class Order extends Component {
         autoComplete: 'off',
         required: false,
         width: '60%'
-      }
+      },
+      cancelOrder: false
     }
   }
+  onClickCheck = (e) => {
+    this.setState(prevState => {
+      const updated = updateObject(this.state.form, { cancelOrder: !prevState.form.cancelOrder });
+      return { form: updated };
+    })
+  }
   onConfirmHandler = () => {
-    let valid = validateOrderData(this.state.form.deliveryTime, this.state.form.expirationTime.value, this.state.form.custAcceptMsg);
+    let valid = validateOrderData(this.state.form.deliveryTime, this.state.form.cancelOrder);
     if(valid.valid === true) {
-      // this.setState({ confirmed: true, error: null, accepting: false, from: valid.msg.from, to: valid.msg.to });
-      // console.log(valid.msg);
       this.props.onConfirm(valid.msg);
     } else {
       this.setState({ error: valid.msg });
@@ -91,7 +95,6 @@ class Order extends Component {
     this.props.confirmedError();
   }
   onRejectHandler = () => {
-    // this.setState({ init: false, reject: true, delivered: false });
     this.props.onReject();
   }
   onAcceptHandler = () => {
@@ -132,28 +135,9 @@ class Order extends Component {
       
   }
   onChecked = (e) => {
-    // this.setState({ delivered: true });
     this.props.onDelivered();
   } 
   render() {
-    
-    // let data = {
-    //   name: 'Dharmik Patel',
-    //   address: 'Gurudatt Society, Andheri East, Mumbai-400099 skldkdkaskldhnaklsfkhifhlashdklsnaklaslhfihdasklfaslhflashlfhdklfkljfkhdklfnklsdfkldklfdklfkldflhsldhfildhfkl',
-    //   time: '2017 oct 10 10:45:00',
-    //   amout: '2373',
-    //   phoneNumber: '8898456787',
-    //   userMsg: 'tshks jsdjljad adj;aojedwe qwo;ejojqwoejaw sdjdojasd;osd aosdjoajsdjsoajls kjklwasj asnlaskl jsodjo;as asojasd;j sdlasdlmndslsedk',
-    //   custAcceptMsg: 'skas asnndklanskldnsdl;awd awemnl;aw;e;lwmelwmle l hsdkklsd sdnksndksnd sdjsjd;lsd adojas;djla',
-    //   from: 'date1',
-    //   to: 'date2',
-    //   expirationTime: '67',
-    //   items: [
-    //     { name: 'Milk', category: 'Dairy', mUnit: 'Liter', price: '20', quantity: 2, src:'./Img/1.jpeg' },
-    //     { name: 'Shirt', category: 'Cloth', mUnit: 'quantity', price: '300', quantity: 1, src:'./Img/2.jpeg' },
-    //     { name: 'Suger', category: 'grocery', mUnit: 'Kilo', price: '80', quantity: 4, src:'./Img/3.jpeg' }
-    //   ]
-    // }
     let data = {
       name: this.props.name,
       address: convertAddress(this.props.address),
@@ -165,49 +149,31 @@ class Order extends Component {
       from: this.props.from,
       to: this.props.to,
       expirationTime: this.props.expirationTime,
-      items: this.props.items
+      items: this.props.items,
+      allowCancelOrder: this.props.allowCancelOrder
     }
     let error = null;
     if(this.state.error || this.props.error) {
       error = <ErrorHandler error={this.state.error ? this.state.error : this.props.error} errorConformedhandler={this.errorConformedhandler} />
     }
-    let userMsg = null;
-    if(data.userMsg) {
-      userMsg = (
+    let allowCancelOrder = (
         <div className={module.Msg} >
-          <hr />
-          <span>User Message was <strong>"{data.userMsg}"</strong></span>     
+          <span>User <strong>{data.allowCancelOrder ? 'can' : 'can\'t'}</strong> cancel this order!</span>     
         </div>
       );
-    }
-    let custMsg = null;
-    if(data.custAcceptMsg && data.custAcceptMsg !== ' ') {
-      custMsg = (
-        <div className={module.Msg} >
-          <hr />
-          <span>Your Message was <strong>"{data.custAcceptMsg}"</strong></span>     
-        </div>
-      );
-    }
     let summary = null;
     if(this.state.confirmed) {
       summary = (
         <div className={module.Summary} >
-          <span>
-            Expected delivery from <strong>{dateTimeFormate(data.from)}</strong> to <strong>{dateTimeFormate(data.to)}</strong>
-          </span>
-          <hr />
-          <span>
-            Number Of Minutes <strong>{data.expirationTime}</strong>
-          </span>
-          {custMsg}
-          {userMsg}
+          <DeliveryTimeLabel 
+            fromTimeStamp={data.from}
+            toTimeStamp={data.to}
+          />
+          <hr style={{ border: '1px solid #eee' }} />
+          {allowCancelOrder}
         </div>
       );
-    }  
-    if(this.state.cancelled && data.userMsg ) {
-      summary = <div className={module.Summary} >{userMsg}</div>;
-    }
+    } 
     let ren = null;
     let header = (
       <Aux>
@@ -228,7 +194,7 @@ class Order extends Component {
     let info = (
       <Block 
         leftIcon1={<AmountIcon />}
-        leftText1='Total Amout'
+        leftText1='Total Amount'
         rightIcon1={<ForwardArrow  />}
         rightText1={str}
         leftIcon2={<Contact />}
@@ -357,36 +323,17 @@ class Order extends Component {
                 </div>
               </div>
             </div>
-            <hr style={{ color: '#006989' }} />
-            <ToolTip msg={this.state.form.expirationTime.placeholder} >
-              <div className={module.AlignInput} >
-                <Input 
-                  Height
-                  width={this.state.form.expirationTime.width}
-                  type={this.state.form.expirationTime.type}
-                  placeholder={this.state.form.expirationTime.placeholder}
-                  value={this.state.form.expirationTime.value}
-                  onChange={e => this.onChangeHandler(e)}
-                  name={this.state.form.expirationTime.name}
-                  required={this.state.form.expirationTime.required}
-                  autoComplete={this.state.form.expirationTime.autoComplete}
+            <hr style={{ border: '1px solid #eee' }} />
+            <div className={module.CustChoice} >
+              <div className={module.CheckBox1} >
+                <CheckBox 
+                  onChange={this.onClickCheck}
+                  checked={this.state.form.cancelOrder}
                 />
               </div>
-            </ToolTip>
-            <hr style={{ color: '#006989' }} />
-            <div className={module.AlignInput} >
-              <Input 
-                Height
-                width={this.state.form.custAcceptMsg.width}
-                type={this.state.form.custAcceptMsg.type}
-                placeholder={this.state.form.custAcceptMsg.placeholder}
-                value={this.state.form.custAcceptMsg.value}
-                onChange={e => this.onChangeHandler(e)}
-                name={this.state.form.custAcceptMsg.name}
-                maxLength={this.state.form.custAcceptMsg.maxLength}
-                required={this.state.form.custAcceptMsg.required}
-                autoComplete={this.state.form.custAcceptMsg.autoComplete}
-              />
+              <div className={module.Msg1} >
+                Allow user to cancel this Order!
+              </div>
             </div>
           </div>
           <div className={module.Buttons} >
@@ -445,9 +392,9 @@ class Order extends Component {
       <div className={module.NoItem} >No Item</div>
     );
     if(data.items) {
-      items = data.items.map(item => {
+      items = data.items.map((item, i) => {
         return <Item 
-                  key={item.name + item.category}
+                  key={i}
                   name={item.name}
                   category={item.category}
                   mUnit={item.mUnit}
@@ -473,7 +420,7 @@ class Order extends Component {
           <div className={module.Container} >
             {time}
             <div className={module.Header} >{header}</div>
-            <div className={module.Info} >{info}</div>
+            <div className={module.InfoH} >{info}</div>
             <div className={module.Divider} ></div>
             <div className={module.Control} >{control}</div>
           </div>
@@ -484,34 +431,11 @@ class Order extends Component {
         </Aux>
       );
     }
-    // ren = (
-    //   <div className={module.Box} >
-    //     {error}
-    //     <div className={module.Container} >
-    //       <div className={module.Header} >{header}</div>
-    //       <div className={module.Info} >{info}</div>
-    //       <div className={module.Divider} ></div>
-    //       <div className={module.Control} >{control}</div>
-    //     </div>
-    //     {this.state.show ? items : null}
-    //     <div className={module.Footer} onClick={this.onClickHandler} >
-    //       {footer}
-    //     </div>
-    //   </div>
-    // );
     ren = (
       <div className={module.Box} >
         {content}
       </div>
     );
-    // console.log('------------------');
-    
-    // console.log('init: ', this.state.init);
-    // console.log('reject', this.state.reject);
-    // console.log('cancelled: ', this.state.cancelled);
-    // console.log('confirmed: ', this.state.confirmed);
-    // console.log('accepting: ', this.state.accepting);
-    // console.log('delivered: ', this.state.delivered);
     return (
       <Aux>
         {ren}
