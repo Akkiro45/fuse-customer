@@ -43,6 +43,61 @@
   width: 100%;
   height: 100%;
 }
+.Input {
+  width: 95%;
+  height: 25px;
+}
+.Catbox,
+.SM {
+  margin: 15px 0;
+}
+.Both,
+.Both1 {
+  height: 28px;
+  width: 100%;
+}
+.Left,
+.Right,
+.Left1,
+.Right1 {
+  height: 100%;
+  width: 80%;
+  float: left;
+}
+.Right,
+.Right1 {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 1.7em;
+  margin-left: 4px;
+}
+.Both1 {
+  height: 24px;
+  margin: 5px 0;
+}
+.Left1 {
+  color: #444;
+  border: 1px solid #ccc;
+  height: 23px;
+  font-size: 16px;
+  padding-left: 10px;
+  width: calc(80% - 12px);
+  border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Right1 {
+  font-size: 1.5em;
+}
+.Input1 {
+  float: left;
+  height: 100%;
+  width: 50%;
+}
+
+
 @media(max-width: 450px) {
   .Photo,
   .PhotoLabel {

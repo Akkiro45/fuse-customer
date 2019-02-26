@@ -11,14 +11,15 @@ import Spinner from '../../../components/UI/SpinnerCenter/SpinnerCenter';
 import ErrorHandler from '../../../hoc/ErrorHandler/ErrorHandler';
 import LabelIn from '../../../components/Shop/Profile/LabelIn/LabelIn';
 import EditModal from '../../../components/Shop/Profile/EditModal/EditModal';
-import { getSelect ,getInput, updateObject, updateProfileValidator } from '../../../shared/utility';
+import { getRSelect ,getRInput, updateObject, updateProfileValidator, getDistrictsOptions } from '../../../shared/utility';
 import { ShopState } from '../../../shared/shopState';
 import { shopCategories, linksType, deliveryService, states } from '../../../shared/option';
-import Category from '../../../components/Shop/Category/Category';
-import SocialMedia from '../../../components/Shop/SocialMedia/SocialMedia';
 import ImageUploader from '../../../components/UI/ImageUploader/ImageUploader';
 import Order from '../../../components/Shop/Profile/Orders/Orders';
 import DeleteShop from '../../../components/Shop/Profile/DeleteShop/DeleteShop';
+import ShopPhoto from '../../../assets/Images/ShopPhoto.png';
+import AddIcon from '../../../components/UI/Icons/Add/Add';
+import CrossIcon from '../../../components/UI/Icons/Cross/Cross';
 
 class Profile extends Component {
   state = {
@@ -28,7 +29,10 @@ class Profile extends Component {
     ...ShopState,
     image: null,
     file: null,
-    upload: false
+    upload: false,
+    districtsOp: [
+      { name: 'district*', value: 'district*' }
+    ]
   }
   onFileSelect = (e) => {
     if(e.target.files && e.target.files[0]) {
@@ -53,8 +57,9 @@ class Profile extends Component {
       <Aux>
         <Space />
         <Label no >{fieldName}</Label>
-        <Space height='10px' />
-        {getInput(state, inputHandler)}
+        <div className={module.Input} >
+          {getRInput(state, inputHandler)}
+        </div>
       </Aux>
     )
     let compo = (
@@ -85,16 +90,15 @@ class Profile extends Component {
   }
   onEditHandler = (type) => {
     let obj = {};
-    if(type === 'timings') {
-      
-    } else if(type === 'shopAddress') {
+    if(type === 'shopAddress') {
       let streetAdd = updateObject(this.state.streetAdd, { value: this.props.profile.shopAddress[0].streetAdd });
       let landmark = updateObject(this.state.landmark, { value: this.props.profile.shopAddress[0].landmark });
-      let city = updateObject(this.state.city, { value: this.props.profile.shopAddress[0].city });
       let pincode = updateObject(this.state.pincode, { value: this.props.profile.shopAddress[0].pincode });
       let state = updateObject(this.state.state, { value: this.props.profile.shopAddress[0].state });     
+      let district = updateObject(this.state.district, { value: this.props.profile.shopAddress[0].city });
+      let districtsOp = getDistrictsOptions(state.value);
       obj = {
-        streetAdd, landmark, city, pincode, state
+        streetAdd, landmark, pincode, state, district, districtsOp
       };
     } else if(type === 'shopCategories') {
       obj = {
@@ -140,7 +144,23 @@ class Profile extends Component {
   onSelectHandler = (e, type) => {
     let field;
     field = updateObject(this.state[type], { value: e.target.value });
-    this.setState({ [type]: field, editError: null });
+    let districtsOp = this.state.districtsOp;
+    let district;
+    if(type === 'state') {
+      district = updateObject(this.state.district, { value: 'district*' });
+      if(e.target.value !== 'state*') {
+        districtsOp = getDistrictsOptions(e.target.value);
+      } else {
+        districtsOp = [
+          { name: 'district*', value: 'district*' }
+        ];
+      }
+    }
+    if(type === 'state') {
+      this.setState({ [type]: field, editError: null, districtsOp, district });
+    } else {
+      this.setState({ [type]: field, editError: null, districtsOp });
+    }
   }
   inputChangedHandler = (e) => {
     this.setState({ editError: false });
@@ -161,29 +181,40 @@ class Profile extends Component {
     } else if(this.state.edit === 'phoneNumber') {
       compo = this.getPopup('Phone Number', this.state.phoneNumber, this.inputChangedHandler, { phoneNumber: this.state.phoneNumber }, 'phoneNumber');
     } else if(this.state.edit === 'shopAddress') {
-      let arr = [this.state.streetAdd, this.state.landmark, this.state.city, this.state.pincode];
+      let arr = [this.state.streetAdd, this.state.landmark, this.state.pincode];
       let inputs = arr.map((el, i) => {
         return (
           <Aux key={i} >
-            <Space height='5px' />
+            <Space height='10px' />
             <Label no >{el.placeholder}</Label>
-            <Space height='5px' />
-            {getInput(el, this.inputChangedHandler)}
+            <div className={module.Input} >
+              {getRInput(el, this.inputChangedHandler)}
+            </div>
           </Aux>
         );
       });
       inputs.push(
         <Aux key={'state'} >
-          <Space height='5px' />
+          <Space height='10px' />
           <Label no >State</Label>
-          <Space height='5px' />
-          {getSelect(this.state.state, states, this.onSelectHandler, 'state')}
+          <div className={module.Input} >
+            {getRSelect(this.state.state, states, this.onSelectHandler, 'state')}
+          </div>
+        </Aux>
+      );
+      inputs.push(
+        <Aux key={'district'} >
+          <Space height='10px' />
+          <Label no >District</Label>
+          <div className={module.Input} >
+            {getRSelect(this.state.district, this.state.districtsOp, this.onSelectHandler, 'district')}
+          </div>
         </Aux>
       );
       let body = {
         streetAdd: this.state.streetAdd,
         landmark: this.state.landmark,
-        city: this.state.city,
+        district: this.state.district,
         pincode: this.state.pincode,
         state: this.state.state
       }
@@ -207,7 +238,9 @@ class Profile extends Component {
         <div>
           <Space />
           <Label no >Delivery Service</Label>
-          {getSelect(this.state.isStatic, deliveryService, this.onSelectHandler, 'isStatic')}
+          <div className={module.Input} >
+            {getRSelect(this.state.isStatic, deliveryService, this.onSelectHandler, 'isStatic')}
+          </div>
         </div>
       );
       compo = (
@@ -219,15 +252,35 @@ class Profile extends Component {
         />
       );
     } else if(this.state.edit === 'shopCategories') {
+      let categoriesC =  this.state.shopCategories.map((c, i) => {
+        return (
+          <div className={module.Both1} key={i} >
+            <div className={module.Left1} >
+              {c.category}    
+            </div>
+            <div className={module.Right1} >
+              <CrossIcon
+                onClick={() => this.onRmvCatClick('shopCategories', c.category)}
+              />
+            </div>  
+          </div>
+        );
+      });
       let cat = (
-        <Category 
-          shopCategories={this.state.shopCategories}
-          category={this.state.category}
-          shopCategoriesOptions={shopCategories}
-          onSelectHandler={this.onSelectHandler}
-          onIconClick={this.onIconClick}
-          onRmvCatClick={this.onRmvCatClick}
-        />
+        <div className={module.Catbox} >
+          <Label no>Shop Category</Label>
+          <div className={module.Both} >
+            <div className={module.Left} >
+              {getRSelect(this.state.category, shopCategories, this.onSelectHandler, 'category')}
+            </div>
+            <div className={module.Right} >
+              <AddIcon 
+                onClick={() => this.onIconClick('shopCategories', { category: this.state.category.value }, 'category')}
+              />
+            </div>  
+          </div>
+          {categoriesC}
+        </div>
       );
       compo = (
         <EditModal 
@@ -238,17 +291,41 @@ class Profile extends Component {
         />
       );
     } else if(this.state.edit === 'socialLinks') {
+      let smC =  this.state.socialLinks.map((link, i) => {
+        let value = `${link.type} : @${link.link}`;
+        return (
+          <div className={module.Both1} key={i} >
+            <div className={module.Left1} >
+              {value}    
+            </div>
+            <div className={module.Right1} >
+              <CrossIcon
+                onClick={() => this.onRmvCatClick('socialLinks', link.type)}
+              />
+            </div>  
+          </div>
+        );
+      });
       let so = (
-        <SocialMedia 
-          socialLinks={this.state.socialLinks}
-          linksType={this.state.linksType}
-          linksTypeOptions={linksType}
-          onSelectHandler={this.onSelectHandler}
-          onIconClick={this.onIconClick}
-          onRmvCatClick={this.onRmvCatClick} 
-          link={this.state.link}
-          inputChangedHandler={this.inputChangedHandler}
-        />
+        <div className={module.SM} >
+          <Label no>Social Media Information</Label>
+          <div className={module.Both} >
+            <div className={module.Left} >
+              <div className={module.Input1} >
+                {getRSelect(this.state.linksType, linksType, this.onSelectHandler, 'linksType')}
+              </div>
+              <div className={module.Input1} >
+                {getRInput(this.state.link, this.inputChangedHandler)}
+              </div>
+            </div>
+            <div className={module.Right} >
+              <AddIcon
+                onClick={() => this.onIconClick('socialLinks', { type: this.state.linksType.value, link: this.state.link.value }, 'linksType')}
+              />
+            </div>
+          </div>
+          {smC}
+        </div>
       );
       compo = (
         <EditModal 
@@ -322,7 +399,8 @@ class Profile extends Component {
             </div>
             <div className={module.Photo} >
               {/* eslint-disable-next-line  */}
-              <img src={'https://as2.ftcdn.net/jpg/01/24/00/49/500_F_124004924_EjrA0S1BFvp3ScWCFMzRcgTnDuX3dGZh.jpg'} />
+              <img src={ShopPhoto} />
+              {/* <img src={'https://as2.ftcdn.net/jpg/01/24/00/49/500_F_124004924_EjrA0S1BFvp3ScWCFMzRcgTnDuX3dGZh.jpg'} /> */}
             </div>
             <Space />
             
@@ -346,14 +424,14 @@ class Profile extends Component {
             <Label1>Landmark :</Label1>
             <LabelIn>{this.props.profile.shopAddress[0].landmark}</LabelIn> 
             <Space height='5px' />
-            <Label1>City :</Label1>
-            <LabelIn>{this.props.profile.shopAddress[0].city}</LabelIn>
-            <Space height='5px' />
             <Label1>Pincode :</Label1>
             <LabelIn>{this.props.profile.shopAddress[0].pincode}</LabelIn>
             <Space height='5px' />
             <Label1>State :</Label1>
             <LabelIn>{this.props.profile.shopAddress[0].state}</LabelIn>
+            <Space height='5px' />
+            <Label1>District :</Label1>
+            <LabelIn>{this.props.profile.shopAddress[0].city}</LabelIn>
             <Space height='5px' />
             <Label1>Country :</Label1>
             <LabelIn>{this.props.profile.shopAddress[0].country}</LabelIn> 

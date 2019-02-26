@@ -6,6 +6,7 @@ import RInput from '../components/UI/RInput/RInput';
 import Select from '../components/UI/Select/Select';
 import RSelect from '../components/UI/RSelect/Select';
 import { shopCategories, linksType } from './option';
+import * as districts from './statewisedistrict';
 
 export const updateObject = (oldObject, updatedproperties) => {
   return {
@@ -130,7 +131,7 @@ export const checkForNumber = (str) => {
 
 export const validateCreateShop1 = (data) => {
   let finalData = {};
-  let fields = [data.shopName, data.streetAdd, data.landmark, data.city, data.pincode, data.phoneNumber, data.description];
+  let fields = [data.shopName, data.streetAdd, data.landmark, data.pincode, data.phoneNumber, data.description];
   for(let i=0; i<fields.length; i++) {
     if(forEmpty(fields[i])) {
       return forEmpty(fields[i]);
@@ -141,6 +142,9 @@ export const validateCreateShop1 = (data) => {
   }
   if(data.state.value === 'state*') {
     return { valid: false, msg: `Please select state!` };
+  }
+  if(data.district.value === 'district*') {
+    return { valid: false, msg: `Please select district!` };
   }
   if(!checkForNumber(data.phoneNumber.value)) {
     return { valid: false, msg: `Please enter valid ${data.phoneNumber.placeholder}` };
@@ -174,7 +178,7 @@ export const validateCreateShop1 = (data) => {
   finalData.shopAddress = {
     streetAdd: data.streetAdd.value,
     landmark: data.landmark.value,
-    city: data.city.value,
+    city: data.district.value,
     pincode: data.pincode.value,
     state: data.state.value
   }
@@ -232,7 +236,7 @@ export const updateProfileValidator = (data, type) => {
     finalData[type] = data[type].value;
   } 
   if(type === 'shopAddress') {
-    let fields = [data.streetAdd, data.landmark, data.city, data.pincode];
+    let fields = [data.streetAdd, data.landmark, data.pincode];
     data.pincode.value = data.pincode.value.toString();
     for(let i=0; i<fields.length; i++) {
       if(forEmpty(fields[i])) {
@@ -245,13 +249,16 @@ export const updateProfileValidator = (data, type) => {
     if(data.state.value === 'state*') {
       return { valid: false, msg: `Please select state!` };
     }
+    if(data.district.value === 'district*') {
+      return { valid: false, msg: `Please select district!` };
+    }
     if(!checkForNumber(data.pincode.value)) {
       return { valid: false, msg: `Please enter valid ${data.pincode.placeholder}` };
     }
     let shopAddress = {};
     shopAddress.streetAdd = data.streetAdd.value;
     shopAddress.landmark = data.landmark.value;
-    shopAddress.city = data.city.value;
+    shopAddress.city = data.district.value;
     shopAddress.pincode = data.pincode.value;
     shopAddress.state = data.state.value;
     finalData.shopAddress = shopAddress;
@@ -444,5 +451,17 @@ export const domainNameChecker = (domain) => {
       return false;
     }
   }
+  // eslint-disable-next-line
+  const re = /[~`\s!#$%\^&*+=\[\]\\';,/{}|\\":<>\?]/;
+  if(re.test(domain)) {
+    return false;
+  }
   return true;
+}
+
+export const getDistrictsOptions = (state) => {
+  if(state !== 'state*') {
+    state = state.split(' ').join('');
+    return districts[state];
+  }
 }

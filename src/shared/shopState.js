@@ -8,7 +8,8 @@ export const ShopState = {
     maxLength: '120',
     required: true,
     width: '90%',
-    height: '35px'
+    height: '35px',
+    bradius: '4px'
   },
   streetAdd: {
     type: 'text',
@@ -19,7 +20,8 @@ export const ShopState = {
     maxLength: '400',
     required: true,
     width: '90%',
-    height: '35px'
+    height: '35px',
+    bradius: '4px'
   },
   landmark: {
     type: 'text',
@@ -30,18 +32,14 @@ export const ShopState = {
     maxLength: '200',
     required: true,
     width: '90%',
-    height: '35px'
+    height: '35px',
+    bradius: '4px'
   },
-  city: {
-    type: 'text',
-    placeholder: 'City',
-    value: '',
-    name: 'city',
-    minLength: '1',
-    maxLength: '200',
-    required: true,
-    width: '80%',
-    height: '35px'
+  district: {
+    value: 'district*',
+    name: 'district',
+    type: 3,
+    bradius: '4px'
   },
   pincode: {
     type: 'tel',
@@ -52,17 +50,20 @@ export const ShopState = {
     maxLength: '6',
     required: true,
     width: '80%',
-    height: '35px'
+    height: '35px',
+    bradius: '4px'
   },
   state: {
     value: 'state*',
     name: 'state',
-    type: 3
+    type: 3,
+    bradius: '4px'
   },
   category: {
     value: 'Category*',
     name: 'shopCategories',
-    type: 3
+    type: 3,
+    bradius: '4px'
   },
   shopCategories: [],
   phoneNumber: {
@@ -74,7 +75,8 @@ export const ShopState = {
     maxLength: '10',
     required: true,
     width: '90%',
-    height: '35px'
+    height: '35px',
+    bradius: '4px'
   },
   description: {
     type: 'text',
@@ -85,18 +87,21 @@ export const ShopState = {
     maxLength: '400',
     required: true,
     width: '90%',
-    height: '35px'
+    height: '35px',
+    bradius: '4px'
   },
   isStatic: {
     value: 'false',
     name: 'isStatic',
-    type: 3
+    type: 3,
+    bradius: '4px'
   },
   socialLinks: [],
   linksType: {
     value: 'Twitter',
     name: 'linksType',
-    type: 3
+    type: 3,
+    bradius: '4px'
   }, 
   link: {
     type: 'text',
@@ -107,7 +112,8 @@ export const ShopState = {
     maxLength: '50',
     required: true,
     width: '80%',
-    height: '35px'
+    height: '35px',
+    bradius: '4px'
   },
   deliveryCharge: {
     type: 'tel',
@@ -118,7 +124,8 @@ export const ShopState = {
     maxLength: '10',
     required: true,
     width: '90%',
-    height: '35px'
+    height: '35px',
+    bradius: '4px'
   },
   domain: {
     type: 'text',

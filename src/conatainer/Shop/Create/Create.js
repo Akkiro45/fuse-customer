@@ -14,12 +14,11 @@ import CrossIcon from '../../../components/UI/Icons/Cross/Cross';
 import CheckIcon from '../../../components/UI/Icons/Check/Check';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import ImageUploader from '../../../components/UI/ImageUploader/ImageUploader';
-import { validateCreateShop1, getInput, getSelect } from '../../../shared/utility';
+import { validateCreateShop1, getInput, getSelect, getDistrictsOptions } from '../../../shared/utility';
 import { shopCategories, linksType, deliveryService, states } from '../../../shared/option';
 import { ShopState } from '../../../shared/shopState';
 import Category from '../../../components/Shop/Category/Category';
 import SocialMedia from '../../../components/Shop/SocialMedia/SocialMedia';
-
 
 class Create extends Component {
   state = {
@@ -31,7 +30,10 @@ class Create extends Component {
     error: null,
     next: false,
     uploded: false,
-    finalData: null
+    finalData: null,
+    districtsOp: [
+      { name: 'district*', value: 'district*' }
+    ]
   }
   onDomainCheck = () => {
     this.props.checkShopDomain(this.state.data.domain.value);
@@ -71,7 +73,22 @@ class Create extends Component {
     let field;
     field = updateObject(this.state.data[type], { value: e.target.value });
     let data = updateObject(this.state.data, { [type]: field });
-    this.setState({ data });
+    let districtsOp = this.state.districtsOp;
+    let district;
+    if(type === 'state') {
+      district = updateObject(this.state.data.district, { value: 'district*' });
+      if(e.target.value !== 'state*') {
+        districtsOp = getDistrictsOptions(e.target.value);
+      } else {
+        districtsOp = [
+          { name: 'district*', value: 'district*' }
+        ];
+      }
+    }
+    if(type === 'state') {
+      data = updateObject(data, { district });
+    }
+    this.setState({ data, districtsOp });
   }
   onIconClick = (field, obj, type) => {
     if(this.state.data[type].value === 'Category*') {
@@ -177,15 +194,15 @@ class Create extends Component {
           <Label>Shop Address</Label>
           {getInput(this.state.data.streetAdd ,this.inputChangedHandler)}
           {getInput(this.state.data.landmark ,this.inputChangedHandler)}
+          {getSelect(this.state.data.state, states, this.onSelectHandler, 'state')}
           <div className={module.Pair} >
             <div className={module.Left} >
-              {getInput(this.state.data.city ,this.inputChangedHandler)}
+            {getSelect(this.state.data.district, this.state.districtsOp, this.onSelectHandler, 'district')}
             </div>
             <div className={module.Right} >
               {getInput(this.state.data.pincode ,this.inputChangedHandler)}
             </div>
           </div>
-          {getSelect(this.state.data.state, states, this.onSelectHandler, 'state')}
           
           <div style={{ height: 'auto', width: '100%' }} >
             <Category
@@ -239,6 +256,7 @@ class Create extends Component {
             <Space />
             <Label>Domain Name</Label>
             <Label>eg. applestore</Label>
+            <Label>Must not contain any special symbols!</Label>
             <div className={module.Pair} >
               <div className={module.Left} style={{ width: '85%' }} >
                 {getInput(this.state.data.domain ,this.inputChangedHandler)}
