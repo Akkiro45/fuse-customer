@@ -9,11 +9,11 @@ import Space from '../../../components/Shop/Space/Space';
 import Label from '../../../components/Shop/Label/Label';
 import ErrorHandler from '../../../hoc/ErrorHandler/ErrorHandler';
 import Aux from '../../../hoc/Auxx/Auxx';
-import Button from '../../../components/UI/FormButton/Button';
+import Button from '../../../components/UI/RButton/Button';
 import CrossIcon from '../../../components/UI/Icons/Cross/Cross';
 import CheckIcon from '../../../components/UI/Icons/Check/Check';
 import Spinner from '../../../components/UI/Spinner/Spinner';
-import ImageUploader from '../../../components/UI/ImageUploader/ImageUploader';
+import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 import { validateCreateShop1, getInput, getSelect, getDistrictsOptions } from '../../../shared/utility';
 import { shopCategories, linksType, deliveryService, states } from '../../../shared/option';
 import { ShopState } from '../../../shared/shopState';
@@ -25,38 +25,20 @@ class Create extends Component {
     data: {
       ...ShopState
     },
-    file: null,
-    image: null,
     error: null,
     next: false,
-    uploded: false,
     finalData: null,
     districtsOp: [
       { name: 'district*', value: 'district*' }
     ]
   }
+  onPhotoUploaded = (data) => {
+    const updatedData = updateObject(this.state.data, { shopPhoto: data })
+    this.setState({ data: updatedData });
+  }
   onDomainCheck = () => {
     this.props.checkShopDomain(this.state.data.domain.value);
     this.setState({ show: true });
-  }
-  onFileSelect = (e) => {
-    if(e.target.files && e.target.files[0]) {
-      let type = e.target.files[0].type;
-      if(type === 'image/jpeg' || type === 'image/png') {
-        this.setState({ file: e.target.files[0], image: URL.createObjectURL(e.target.files[0]) });
-      } else {
-        this.setState({ error: 'Please select image file with jpeg/png extention' });
-      }
-    }
-  }
-  onUpload = () => {
-    if(this.state.file) {
-      const updatedshopPhoto = updateObject(this.state.data.shopPhoto, { name: this.state.file.name, type: this.state.file.type });
-      const updateData = updateObject(this.state.data, { shopPhoto: updatedshopPhoto });
-      this.setState({ uploded: true, data: updateData });
-    } else {
-      this.setState({ error: 'Please Select Photo!' });
-    }
   }
   errorConformedhandler = () => {
     if(this.state.error) {
@@ -130,9 +112,9 @@ class Create extends Component {
   }
   onConfirm = () => {
     let obj = {};
-    if(this.state.uploded) {
+    if(this.state.data.shopPhoto) {
       obj.shopPhotos = [this.state.data.shopPhoto];
-    } 
+    }
     if(this.props.domain && this.state.show ) {
       obj.shopSrchName = this.state.data.domain.value;
       this.props.createShop(this.props.token, updateObject(this.state.finalData, obj));
@@ -236,23 +218,22 @@ class Create extends Component {
           <Space />
           <Label>Shop Description</Label>
           {getInput(this.state.data.description ,this.inputChangedHandler)}
-          <div className={module.Button} >
-            <div className={module.Space} ></div>
-            <Button onClick={this.onClickNext} >Next</Button>
+          <div className={module.Buttons} >
+            <div className={module.Button} >
+              <Button onClick={this.onClickNext} >Next</Button>
+            </div>
           </div>
         </Aux>
       );
     } else {
       ren = (
         <Aux> 
-          <ImageUploader 
-            src={this.state.image} 
-            onFileSelect={this.onFileSelect}
-            onUpload={this.onUpload}
-            title='Shop Photo'
+          <div className={module.PhotoC} >
+            <ImageUploader 
+              onPhotoUploaded={this.onPhotoUploaded}
             />
+          </div>
           <div className={module.Domain} >
-            <Space />
             <Space />
             <Label>Domain Name</Label>
             <Label>eg. applestore</Label>
@@ -263,18 +244,18 @@ class Create extends Component {
               </div>
               {icon}
             </div>
-            <div className={module.ButtonGroup} style={{ height: '75px' }} >
-              <Button width='120px' onClick={this.onDomainCheck} >Check</Button>
+            <div className={module.Buttons}>
+              <div className={module.Button} >
+                <Button bradius='4px' onClick={this.onDomainCheck} >Check</Button>
+              </div>
             </div>
           </div>
           <div className={module.Buttons} >
-            <div className={module.FinalButtons} >
-              <div className={module.Back} >
-                <Button width='120px' onClick={this.onBack} >Back</Button>
-              </div>
-              <div className={module.Confirm} >
-                <Button width='120px' onClick={this.onConfirm} >Confirm</Button>
-              </div>
+            <div className={module.Button} >
+              <Button bradius='4px' onClick={this.onBack} >Back</Button>
+            </div>
+            <div className={module.Button} >
+              <Button bradius='4px' onClick={this.onConfirm} >Confirm</Button>
             </div>
           </div>
         </Aux>

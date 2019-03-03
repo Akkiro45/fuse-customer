@@ -36,3 +36,8 @@ export {
   updateProfile,
   deleteShop
 } from './profile';
+
+export {
+  uploadPhoto,
+  photoUploadClear
+} from './photo-upload';

@@ -11,10 +11,10 @@ import Spinner from '../../../components/UI/SpinnerCenter/SpinnerCenter';
 import ErrorHandler from '../../../hoc/ErrorHandler/ErrorHandler';
 import LabelIn from '../../../components/Shop/Profile/LabelIn/LabelIn';
 import EditModal from '../../../components/Shop/Profile/EditModal/EditModal';
-import { getRSelect ,getRInput, updateObject, updateProfileValidator, getDistrictsOptions } from '../../../shared/utility';
+import { awsS3BucketUrl, getRSelect ,getRInput, updateObject, updateProfileValidator, getDistrictsOptions } from '../../../shared/utility';
 import { ShopState } from '../../../shared/shopState';
 import { shopCategories, linksType, deliveryService, states } from '../../../shared/option';
-import ImageUploader from '../../../components/UI/ImageUploader/ImageUploader';
+import ImageUploader from '../../../components/ImageUploader/ImageUploader';
 import Order from '../../../components/Shop/Profile/Orders/Orders';
 import DeleteShop from '../../../components/Shop/Profile/DeleteShop/DeleteShop';
 import ShopPhoto from '../../../assets/Images/ShopPhoto.png';
@@ -27,30 +27,12 @@ class Profile extends Component {
     edit: null,
     editError: null,
     ...ShopState,
-    image: null,
-    file: null,
-    upload: false,
     districtsOp: [
       { name: 'district*', value: 'district*' }
     ]
   }
-  onFileSelect = (e) => {
-    if(e.target.files && e.target.files[0]) {
-      let type = e.target.files[0].type;
-      if(type === 'image/jpeg' || type === 'image/png') {
-        this.setState({ file: e.target.files[0], image: URL.createObjectURL(e.target.files[0]) });
-      } else {
-        this.setState({ editError: 'Please select image file with jpeg/png extention' });
-      }
-    }
-  }
-  onUpload = () => {
-    if(this.state.file) {
-      const updatedshopPhoto = updateObject(this.state.shopPhoto, { name: this.state.file.name, type: this.state.file.type });
-      this.setState({ uploded: true, shopPhoto: updatedshopPhoto, show: false, edit: null });
-    } else {
-      this.setState({ editError: 'Please Select Photo!' });
-    }
+  onPhotoUploaded = (data) => {
+    this.setState({ shopPhoto: data, edit: null });
   }
   getPopup = (fieldName, state, inputHandler, body, type) => {
     let inputs = (
@@ -168,6 +150,12 @@ class Profile extends Component {
     this.setState({ [e.target.name]: updatedValue });
   }
   render() {
+    let src = ShopPhoto;
+    if(this.props.profile) {
+      if(this.props.profile.shopPhotos.length > 0) {
+        src = awsS3BucketUrl + this.props.profile.shopPhotos[0].name;
+      }
+    }
     let ren = null;
     let socialInfo = null;
     let modal = null;
@@ -228,10 +216,9 @@ class Profile extends Component {
       );
     } else if(this.state.edit === 'shopPhotos') {
       compo = <ImageUploader
-        src={this.state.image} 
-        onFileSelect={this.onFileSelect}
-        onUpload={this.onUpload}
-        title='Shop Photo'
+        // src={src}
+        update
+        onPhotoUploaded={this.onPhotoUploaded}
       />
     } else if(this.state.edit === 'isStatic') {
       let cat = (
@@ -399,7 +386,7 @@ class Profile extends Component {
             </div>
             <div className={module.Photo} >
               {/* eslint-disable-next-line  */}
-              <img src={ShopPhoto} />
+              <img src={src} />
               {/* <img src={'https://as2.ftcdn.net/jpg/01/24/00/49/500_F_124004924_EjrA0S1BFvp3ScWCFMzRcgTnDuX3dGZh.jpg'} /> */}
             </div>
             <Space />

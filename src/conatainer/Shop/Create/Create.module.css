@@ -19,13 +19,11 @@
   padding: 0 10px;
   z-index: 50;
 }
-
 .HeaderS {
   height: 50%;
   width: 85%;
   margin: auto;
 }
-
 .Fuse,
 .Logout {
   color: white;
@@ -40,7 +38,6 @@
   text-decoration: none;
   color: white;
 }
-
 .Container {
   background-color: #eee;
   box-sizing: border-box;
@@ -52,114 +49,47 @@
   top: 15%;
   margin-bottom: 2.5%;
 }
-
 .Form {
   box-sizing: border-box;
   width: 90%;
   height: 100%;
   margin: auto;
 }
-
 .Pair {
   width: 100%;
   height: 45px;
 }
-
 .Left {
   float: left;
   width: 50%;
 }
-
 .Right {
   width: 50%;
   float: right;
 }
-
 .Icon {
   font-size: 2em;
 }
-
-.Button {
-  margin-bottom: 20px;
-}
-
-.Space {
-  width: 30%;
-  height: 45px;
-  float: left;
-}
-
-.Photo {
-  width: 90%;
-  height: 390px;
-  margin: auto;
-  border-bottom: 2px solid #ccc;
-}
-
 .Domain {
   width: 90%;
-  height: 190px;
   margin: auto;
 }
-
 .Buttons {
   width: 90%;
-  height: 120px;
-  margin: auto;
+  margin: 10px auto;
+  text-align: center; 
 }
-
-.PhotoBox {
-  background-color: white;
-  width: 80%;
-  height: 50%;
-  margin: auto;
-  box-shadow: 2px 3px 3px #ccc, 2px -3px 3px #ccc, -2px -3px 3px #ccc, -2px 3px 3px #ccc;
+.Button {
+  width: 100px;
+  height: 30px;
+  display: inline-block;
+  margin: 5px 10px;
 }
-.PhotoTitle {
-  text-align: center;
-  width: 100%;
-  height: 20px;
-  color: #444;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.PhotoButtons {
-  width: 100%;
-  margin: 'auto';
-  height: 150px;
-}
-
 .SideSpace {
   width: 100%;
   height: 100%;
 }
-
-.ButtonGroup {
-  height: 100%;
-  width: 120px;
-  margin: auto;
-}
-
-.FinalButtons {
-  width: 250px;
-  margin: auto;
-  position: relative;
-  top: 30px;
-}
-.Back {
-  float: left;
-}
-.Confirm {
-  float: right;
-}
-
-@media( max-width: 400px ) {
-  .FinalButtons {
-    width: 120px;
-    top: 10px;
-  }
-  .Back {
-    margin-bottom: 5px;
-  }
+.PhotoC {
+  width: 100%;
+  padding-top: 15px;
 }

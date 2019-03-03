@@ -21,6 +21,7 @@ import { dateTimeFormate } from '../../shared/utility';
 import { convertAddress } from '../../shared/utility';
 import Spinner from '../UI/Spinner/Spinner';
 import DeliveryTimeLabel from './DeliveryTimeLabel/DeliveryTimeLabel';
+import CPopup from './ConfirmPopup/ConfirmPopup';
 
 class Order extends Component {
   state = {
@@ -28,20 +29,12 @@ class Order extends Component {
     init: true,
     reject: false,
     delivered: false,
+    notdelivered: false,
     accepting: false,
     cancelled: false,
     confirmed: false,
     show: false,  
     form: {
-      expirationTime: {
-        type: 'text',
-        placeholder: 'Number of miniutes in which user can CANCEL this order!',
-        value: '',
-        name: 'expirationTime',
-        autoComplete: 'off',
-        required: true,
-        width: '60%'
-      },
       deliveryTime: {
         from: {
           year: 'year',
@@ -58,18 +51,10 @@ class Order extends Component {
           miniutes: 'miniutes'
         }
       },
-      custAcceptMsg: {
-        type: 'text',
-        placeholder: 'Short message to user(optional)',
-        value: '',
-        name: 'custAcceptMsg',
-        maxLength: '200',
-        autoComplete: 'off',
-        required: false,
-        width: '60%'
-      },
       cancelOrder: false
-    }
+    },
+    showD: false,
+    showND: false
   }
   onClickCheck = (e) => {
     this.setState(prevState => {
@@ -129,26 +114,46 @@ class Order extends Component {
     this.setState({ form: updatedForm });
     this.setState({ reject: this.props.reject, 
                     delivered: this.props.delivered,
+                    notdelivered: this.props.notdelivered,
                     cancelled: this.props.cancelled,
                     confirmed: this.props.confirmed,
                     init: this.props.init });
-      
   }
-  onChecked = (e) => {
-    this.props.onDelivered();
-  } 
+  onCheckToggle = (type) => {
+    this.setState(prevState => {
+      return { [type]: !prevState[type] };
+    });
+  }
   render() {
+    let cPopup = null;
+    if(this.state.showD) {
+      cPopup = (
+        <CPopup 
+          show={this.state.showD}
+          msg='Are you sure product delivered!'
+          popupHandler={() => this.onCheckToggle('showD')}
+          onConfirm={this.props.onDelivered}
+        />
+      );
+    } else if(this.state.showND) {
+      cPopup = (
+        <CPopup 
+          show={this.state.showND}
+          msg='Are you sure product not delivered!'
+          popupHandler={() => this.onCheckToggle('showND')}
+          onConfirm={this.props.onNotDelivered}
+        />
+      );
+    }
     let data = {
       name: this.props.name,
       address: convertAddress(this.props.address),
       time: dateTimeFormate(this.props.time),
       amout: this.props.amount,
       phoneNumber: this.props.phoneNumber,
-      userMsg: this.props.userMsg,
-      custAcceptMsg: this.props.custAcceptMsg,
       from: this.props.from,
       to: this.props.to,
-      expirationTime: this.props.expirationTime,
+      // expirationTime: this.props.expirationTime,
       items: this.props.items,
       allowCancelOrder: this.props.allowCancelOrder
     }
@@ -223,7 +228,11 @@ class Order extends Component {
         <div className={module.Delivery} >
           <span>Delivered</span>
           <CheckBox 
-            onChange={(e) => this.onChecked(e)}
+            onChange={() => this.onCheckToggle('showD')}
+            checked={this.state.delivered} /> 
+          <span>| Not Delivered</span>
+          <CheckBox
+            onChange={() => this.onCheckToggle('showND')}
             checked={this.state.delivered} /> 
         </div>
       );
@@ -240,12 +249,32 @@ class Order extends Component {
               leftIcon2={<DeliveryRun />}
               leftText2='Delivered'
               rightIcon2={<ForwardArrow  />}
-              rightText2={this.state.delivered ? 'Yes' : 'No'}
+              rightText2={this.state.delivered ? 'Yes' : 'Pending'}
               color1={ this.state.cancelled ? 'red' : 'green' }
               color2='red'
             />
           </div>
           {buttons}
+          {summary}
+        </div>
+      );
+    } else if(this.state.notdelivered) {
+      control = (
+        <div>
+          <div className={module.Info} >
+            <Block 
+              leftIcon1={<PriceTag />}
+              leftText1='Status'
+              rightIcon1={<ForwardArrow  />}
+              rightText1='Confirmed'
+              leftIcon2={<DeliveryRun />}
+              leftText2='Delivered'
+              rightIcon2={<ForwardArrow  />}
+              rightText2={'No'}
+              color1='green'
+              color2={'red'}
+            />
+          </div>
           {summary}
         </div>
       );
@@ -358,7 +387,7 @@ class Order extends Component {
               leftIcon2={<DeliveryRun />}
               leftText2='Delivered'
               rightIcon2={<ForwardArrow  />}
-              rightText2={this.state.delivered ? 'Yes' : 'No'}
+              rightText2={this.state.delivered ? 'Yes' : 'Pending'}
               color1='green'
               color2={this.state.delivered ? 'green' : 'red'}
             />
@@ -401,7 +430,7 @@ class Order extends Component {
                   mValue={item.mValue}
                   price={item.price}
                   quantity={item.quantity}
-                  src={item.src} />
+                  src={item.photo.name} />
       });
     }
     let time = null;
@@ -433,6 +462,7 @@ class Order extends Component {
     }
     ren = (
       <div className={module.Box} >
+        {cPopup}
         {content}
       </div>
     );

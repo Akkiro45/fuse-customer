@@ -13,6 +13,7 @@ import orderReducer from './store/reducers/orders';
 import shopReducer from './store/reducers/shop';
 import inventoryReducer from './store/reducers/inventory';
 import profileReducer from './store/reducers/profile';
+import photoUploadReducer from './store/reducers/photo-upload';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   orders: orderReducer,
   shop: shopReducer,
   inv: inventoryReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  upload: photoUploadReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

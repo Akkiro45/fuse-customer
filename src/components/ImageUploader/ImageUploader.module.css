@@ -1,0 +1,61 @@
+.Photo {
+  width: 90%;
+  max-width: 950px;
+  margin: 10px auto;
+}
+.PContainer {
+  width: 280px;
+  height: 200px;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content:center;
+  align-content:center;
+  flex-direction:column;
+}
+.PContainer img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 4px;
+  margin: auto;
+}
+.Buttons {
+  width: 100%;
+  text-align: center;
+  margin: 15px 0;
+}
+.Button {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  margin: 5px 10px;
+}
+.Error,
+.Success {
+  color: #ff0000;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.Success {
+  color: #00d348;
+}
+
+@media(max-width: 650px) {
+  .Photo {
+    width: 95%;
+  }
+  .Error,
+  .Success {
+    font-size: 14px;
+  }
+}
+@media( max-width: 550px ) {
+  .PContainer {
+    width: 85%;
+    height: 150px;
+  }
+}

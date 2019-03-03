@@ -49,7 +49,7 @@ class Items extends Component {
           key={i}
           name={item.name} 
           data={item}
-          src={item.src} 
+          src={item.photo} 
           onClick={this.props.onItemClick} />
       });
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import module from './Item.module.css';
-import ImageUploader from '../../../UI/ImageUploader/ImageUploader';
+import ImageUploader from '../../../ImageUploader/ImageUploader';
 import Label from '../../Label/Label';
 import { getRInput, getRSelect } from '../../../../shared/utility';
 import { mUnits } from '../../../../shared/option';
@@ -9,7 +9,7 @@ import Space from '../../Space/Space';
 import Aux from '../../../../hoc/Auxx/Auxx';
 import AddIcon from '../../../UI/Icons/Add/Add';
 import CrossIcon from '../../../UI/Icons/Cross/Cross';
-import Button from '../../../UI/FormButton/Button';
+import Button from '../../../UI/RButton/Button';
 import BackIcon from '../../../UI/Icons/Back/Back';
 
 const item = (props) => {
@@ -52,17 +52,17 @@ const item = (props) => {
   });
   let buttons = (
     <div className={module.Button} >
-      <Button width='120px' onClick={props.finalButtonHandler} >{props.fianlButton}</Button>
+      <Button bradius='4px' onClick={props.finalButtonHandler} >{props.fianlButton}</Button>
     </div>
   );
   if(props.update) {
     buttons = (
       <Aux>
         <div className={module.Button} >
-          <Button width='120px' height='50px' onClick={props.updateButtonHandler} >{props.updateButton}</Button>
+          <Button bradius='4px' onClick={props.updateButtonHandler} >{props.updateButton}</Button>
         </div>
         <div className={module.Button} >
-          <Button width='120px' height='50px' onClick={props.deleteButtonHandler} >{props.deleteButton}</Button>
+          <Button bradius='4px' onClick={props.deleteButtonHandler} >{props.deleteButton}</Button>
         </div>
       </Aux>
     );
@@ -76,10 +76,8 @@ const item = (props) => {
         {props.update ? 'Update' : 'Add New'} Item
       </div>
       <ImageUploader
-        title={'Item Photo'}
         src={props.src} 
-        onFileSelect={props.onFileSelect} 
-        onUpload={props.onUpload}
+        onPhotoUploaded={props.onPhotoUploaded}
       />
       <div className={module.Inputs} >
         <Label>Name</Label>

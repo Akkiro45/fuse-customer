@@ -3,7 +3,6 @@
   width: 100%;
   height: 100%;
 }
-
 .Showcase {
   background-color: #2874ff;
   box-sizing: border-box;
@@ -11,35 +10,30 @@
   height: 375px;
   box-shadow: 0 0 5px 2px #888;
 }
-
 .Links {
   width: 50%;
   height: 16%;
   margin: auto;
   position: relative;
-  /* top: 55%; */
-  top: 80%;
+  top: 75%;
 }
-
 .Content {
   width: 100%;
   height: auto;
   text-align: center;
-  padding: 3% 0; 
+  padding-top: 3%;
   color: #2874ff;
 }
-
 .Title {
   font-weight: bold;
   font-size: 1.5em;
   margin: 0;
   margin-bottom: 2px;
 }
-
 .Text {
   font-size: 1em;
+  font-weight: bold;
 }
-
 .Left,
 .Right {
   width: 50%;
@@ -49,7 +43,6 @@
 .Right {
   float: right;
 }
-
 .Fuse {
   color: white;
   font-weight: bold;
@@ -58,21 +51,140 @@
   position: relative;
   top: 120px;
 }
-
 .TagLine {
   font-weight: 100;
   font-size: 1.2em;
+  font-weight: bold;
   margin: 0;
   margin-bottom: 2px;
   color: white;
   position: relative;
-  /* top: 130px; */
   top: 200px;
   text-align: center;
+}
+.Msg {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+  top: 210px;
+  width: 98%;
+  margin: auto;
+}
+.Cards {
+  border-top: 1px solid #ccc;
+  width: 95%;
+  margin: 20px auto;
+  max-width: 1300px;
+}
+.Card {
+  width: 90%;
+  height: 200px;
+  margin: auto;
+}
+.HR {
+  width: 95%;
+  border-top: 1px solid #eee;
+  border-bottom: none;
+}
+.Body {
+  float: left;
+  height: 100%;
+  width: 70%;
+}
+.Photo {
+  float: left;
+  height: 100%;
+  width: 30%;
+}
+.Photo img {
+  width: 70%;
+  height: 70%;
+  margin: 10%;
+}
+.Title1 {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  color: #2874ff;
+  text-align: left;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.Text1 {
+  color: #444;
+  text-align: left;
+  overflow: hidden;
+  font-size: 16px;
+}
+.Footer {
+  width: 100%;
+  height: 150px;
+  background-color: #2874ff;
+}
+.FooterC {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  position: relative;
+  top: 7px;
+  max-width: 1200px;
+}
+.LeftC {
+  width: 70%;
+  height: 80%;
+  float: left;
+  margin-top: 30px;
+}
+.RightC {
+  width: 30%;
+  height: 80%;
+  float: left;
+  margin-top: 30px;
+}
+.Label {
+  color: white;
+  font-size: 16px;
+  text-align: left;
+  margin: 15px 0;
+}
+.Label a {
+  color: white;
+  text-decoration: none;
+}
+.Label a:hover {
+  color: #b0ccff;
 }
 
 @media( max-width: 630px ) {
   .Links {
     width: 70%;
+  }
+  .Cards {
+    width: 100%;
+  }
+  .Card {
+    height: 170px;
+  }
+  .Body {
+    width: 60%;
+  }
+  .Photo {
+    width: 40%;
+  }
+  .Photo img {
+    width: 80%;
+    height: 80%;
+    margin: 10%;
+  }
+  .Title1 {
+    margin-top: 14px;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  .Text1 {
+    font-size: 12px;
+  }
+  .Label {
+    font-size: 14px;
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Button from '../FormButton/Button';
+import Button from '../RButton/Button';
 import Aux from '../../../hoc/Auxx/Auxx';
 
 class FileInput extends Component {
@@ -14,7 +14,9 @@ class FileInput extends Component {
           accept='image/jpeg, image/png'
           ref={fileInput => this.fileInput = fileInput}
         />
-        <Button width='120px' onClick={() => this.fileInput.click()} >Pick File</Button>
+        <div style={this.props.style} >
+          <Button onClick={() => this.fileInput.click()} >Pick Photo</Button>
+        </div>
       </Aux>
     );
   }

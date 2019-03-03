@@ -16,7 +16,7 @@ class Orders extends Component {
     error: null,
     orders: null,
     pageNumber: 1,
-    pageSize: 10,
+    pageSize: 20,
     done: false
   }
   onChangeFilter = (e) => {
@@ -26,7 +26,8 @@ class Orders extends Component {
     else if(e.target.value === '4') this.setState({ str: 'Accepted' });
     else if(e.target.value === '5') this.setState({ str: 'Rejected' });
     else if(e.target.value === '6') this.setState({ str: 'Delivered' });
-    else if(e.target.value === '7') this.setState({ str: null });
+    else if(e.target.value === '7') this.setState({ str: 'Not Delivered' });
+    else if(e.target.value === '8') this.setState({ str: null });
     this.props.fetchOrders(1, this.state.pageSize, parseInt(e.target.value), this.props.token);
   }
   componentDidMount() {
@@ -44,6 +45,9 @@ class Orders extends Component {
   }
   onDelivered = (orderID) => {
     this.props.onUpdateOrder(this.props.token, { orderID, type: 6 });
+  }
+  onNotDelivered = (orderID) => {
+    this.props.onUpdateOrder(this.props.token, { orderID, type: 7 });
   }
   getLoading = (id) => {
     if(this.props.current === id && this.props.updateLoading) {
@@ -78,7 +82,8 @@ class Orders extends Component {
       { name: 'Accepted', value: 4 },
       { name: 'Rejected', value: 5 },
       { name: 'Delivered', value: 6 },
-      { name: 'All', value: 7 }
+      { name: 'Not Delivered', value: 7 },
+      { name: 'All', value: 8 }
     ];
     let orders = null;
     orders = (
@@ -91,7 +96,7 @@ class Orders extends Component {
         orders = this.props.orders.map(order => {
           let timeAt = null;
           let time = order.status.find(status => status.type === 2);
-          let init=false, reject = false, delivered = false, cancelled = false, confirmed = false;
+          let init=false, reject = false, delivered = false, cancelled = false, confirmed = false, notdelivered = false;
           order.status.forEach(status => {
             if(status.type === 2) {
               init = true;
@@ -115,6 +120,12 @@ class Orders extends Component {
               confirmed = true;
               init = false;
               timeAt = status.timeStamp;
+            } else if(status.type === 7) {
+              delivered = false;
+              confirmed = true;
+              init = false;
+              notdelivered = true;
+              timeAt = status.timeStamp;
             }
           });
           return <Order 
@@ -132,6 +143,7 @@ class Orders extends Component {
                     delivered={delivered}
                     cancelled={cancelled}
                     confirmed={confirmed}
+                    notdelivered={notdelivered}
                     init={init}
                     loading={this.getLoading(order._id)}
                     error={this.getError(order._id)}
@@ -139,6 +151,7 @@ class Orders extends Component {
                     onReject={() => this.onReject(order._id)}
                     onConfirm={(data) => this.onConfirm(data, order._id)}
                     onDelivered={() => this.onDelivered(order._id)}
+                    onNotDelivered={() => this.onNotDelivered(order._id)}
                     timeAt={timeAt}
                   />
         })

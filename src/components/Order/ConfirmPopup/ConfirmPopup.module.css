@@ -1,0 +1,15 @@
+.Msg {
+  color: #2874ff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+.Buttons {
+  text-align: center;
+}
+.Button {
+  width: 70px;
+  height: 25px;
+  display: inline-block;
+  margin: 10px;
+}

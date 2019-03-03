@@ -99,10 +99,10 @@ class Inventory extends Component {
     mpValues: [],
     itemID: null,
     itemCategorie: null,
-    file: null,
-    image: null,
     itemPhoto: null,
-    uploded: false
+  }
+  onPhotoUploaded = (data) => {
+    this.setState({ itemPhoto: data });
   }
   onAddValue = () => {
     let mValue = updateObject(this.state.mValue, { value: '' });
@@ -134,28 +134,10 @@ class Inventory extends Component {
     let price = updateObject(this.state.price, { value: '' });  
     let description = updateObject(this.state.description, { value: '' });
     let mpValues = [];
-    this.setState({ icon: false, item: false, name, mUnit, mUnits, mValue, mpValues, price, description, file: null, image: null, itemPhoto: null, uploded: false });
-  }
-  onFileSelect = (e) => {
-    if(e.target.files && e.target.files[0]) {
-      let type = e.target.files[0].type;
-      if(type === 'image/jpeg' || type === 'image/png') {
-        this.setState({ file: e.target.files[0], image: URL.createObjectURL(e.target.files[0]), error: null });
-      } else {
-        this.setState({ error: 'Please select image file with jpeg/png extention' });
-      }
-    }
-  }
-  onUpload = () => {
-    if(this.state.file) {
-      const updatedItemPhoto = updateObject(this.state.itemPhoto, { name: this.state.file.name, type: this.state.file.type });
-      this.setState({ uploded: true, itemPhoto: updatedItemPhoto, error: null });
-    } else {
-      this.setState({ error: 'Please Select Photo!' });
-    }
+    this.setState({ icon: false, item: false, name, mUnit, mUnits, mValue, mpValues, price, description, itemPhoto: null });
   }
   onItemHandler = (type) => {
-    if(!this.state.uploded) {
+    if(!this.state.itemPhoto) {
       this.setState({ error: 'Please Upload Photo!' });
     } else {
       const r = itemValidator(this.state.name, this.state.itemCategorie, this.state.mUnit, this.state.mUnits, this.state.mpValues,this.state.description, this.state.itemPhoto);
@@ -204,7 +186,7 @@ class Inventory extends Component {
     mpValues = data.mpValues;
     // let price = updateObject(this.state.price, { value: data.price });
     let description = updateObject(this.state.description, { value: data.description });
-    this.setState({ item: true, itemID: data._id, name, mUnit, mUnits, mpValues, description, itemPhoto: data.photo, uploded: true, itemCategorie: data.category, error: null });
+    this.setState({ item: true, itemID: data._id, name, mUnit, mUnits, mpValues, description, itemPhoto: data.photo, itemCategorie: data.category, error: null });
   }
   onIconClick = (category) => {
     this.setState({ icon: true, itemCategorie: category, error: null, mpValues: [] });
@@ -238,36 +220,7 @@ class Inventory extends Component {
     }
 
     let show = null;
-    if(this.state.item) {
-      // show = <ErrorHandler 
-      //   error={
-      //     <ItemInfo 
-      //       update
-      //       title='Update Item'
-      //       updateButton='Update Item'
-      //       deleteButton='Delete Item'
-      //       name={this.state.name}
-      //       mUnit={this.state.mUnit}
-      //       mUnits={this.state.mUnits}
-      //       mValue={this.state.mValue}
-      //       price={this.state.price}
-      //       description={this.state.description}
-      //       inputHandler={this.inputChangeHandler}
-      //       selectHandler={this.onSelectHandler}
-      //       src={this.state.image}
-      //       onFileSelect={this.onFileSelect}
-      //       onUpload={this.onUpload}
-      //       error={this.state.error}
-      //       updateButtonHandler={() => this.onItemHandler('5')}
-      //       deleteButtonHandler={() => this.onItemHandler('4')}
-      //       onAddMvalue={this.onAddMvalue}
-      //       mValues={this.state.mValues}
-      //       onRmvValue={this.onRmvValue}
-      //     />
-      //   } 
-      //   errorConformedhandler={() => this.onClear('item')} />
-      show = null;
-    } else if(this.state.cat) {
+    if(this.state.cat) {
       show = <ErrorHandler 
         error={
           <AddCat 
@@ -278,32 +231,6 @@ class Inventory extends Component {
           />
         } 
         errorConformedhandler={() => this.onClear('cat')} />
-    } else if(this.state.icon) {
-      // show = <ErrorHandler 
-      //   error={
-      //     <ItemInfo 
-      //       title='Add New Item'
-      //       fianlButton='Add Item'
-      //       finalButtonHandler={() => this.onItemHandler('2')}
-      //       name={this.state.name}
-      //       mUnit={this.state.mUnit}
-      //       mUnits={this.state.mUnits}
-      //       mValue={this.state.mValue}
-      //       price={this.state.price}
-      //       description={this.state.description}
-      //       inputHandler={this.inputChangeHandler}
-      //       selectHandler={this.onSelectHandler}
-      //       src={this.state.image}
-      //       onFileSelect={this.onFileSelect}
-      //       onUpload={this.onUpload}
-      //       error={this.state.error}
-      //       onAddMvalue={this.onAddMvalue}
-      //       mValues={this.state.mValues}
-      //       onRmvValue={this.onRmvValue}
-      //     />
-      //   }
-      //   errorConformedhandler={() => this.onClear('icon')} />
-      show = null;
     } 
     let items = (
       <div className={module.Empty} >
@@ -348,7 +275,6 @@ class Inventory extends Component {
       ren = (
         <Item
           update
-          title='Update Item'
           updateButton='Update Item'
           deleteButton='Delete Item'
           name={this.state.name}
@@ -359,9 +285,7 @@ class Inventory extends Component {
           description={this.state.description}
           inputHandler={this.inputChangeHandler}
           selectHandler={this.onSelectHandler}
-          src={this.state.image}
-          onFileSelect={this.onFileSelect}
-          onUpload={this.onUpload}
+          src={this.state.itemPhoto}
           error={this.state.error}
           updateButtonHandler={() => this.onItemHandler('5')}
           deleteButtonHandler={() => this.onItemHandler('4')}
@@ -369,12 +293,12 @@ class Inventory extends Component {
           mpValues={this.state.mpValues}
           onRmvValue={this.onRmvValue}
           onBack={this.onClear}
+          onPhotoUploaded={this.onPhotoUploaded}
         />
       );
     } else if(this.state.icon) {
       ren = (
         <Item
-          title='Add New Item'
           fianlButton='Add Item'
           finalButtonHandler={() => this.onItemHandler('2')}
           name={this.state.name}
@@ -385,14 +309,12 @@ class Inventory extends Component {
           description={this.state.description}
           inputHandler={this.inputChangeHandler}
           selectHandler={this.onSelectHandler}
-          src={this.state.image}
-          onFileSelect={this.onFileSelect}
-          onUpload={this.onUpload}
           error={this.state.error}
           onAddValue={this.onAddValue}
           mpValues={this.state.mpValues}
           onRmvValue={this.onRmvValue}
           onBack={this.onClear}
+          onPhotoUploaded={this.onPhotoUploaded}
         />
       );
     } 

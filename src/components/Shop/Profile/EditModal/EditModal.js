@@ -1,7 +1,7 @@
 import React from 'react';
 
 import module from './EditModal.module.css';
-import Button from '../.././../UI/FormButton/Button';
+import Button from '../.././../UI/RButton/Button';
 
 const editModal = (props) => {
   let error = null;
@@ -20,7 +20,7 @@ const editModal = (props) => {
       </div>
       {error}
       <div className={module.Button} >
-        <Button width='150px' onClick={props.onClick} >Update</Button>
+        <Button onClick={props.onClick} >Update</Button>
       </div>
     </div>
   );

@@ -298,8 +298,6 @@ export const updateProfileValidator = (data, type) => {
     }
   }
   if(type === 'isStatic') {
-    console.log(data);
-    
     if(data.isStatic.value === 'true' || data.isStatic.value === true) {
       finalData.isStatic = false;
     } else {
@@ -465,3 +463,16 @@ export const getDistrictsOptions = (state) => {
     return districts[state];
   }
 }
+
+export const checkPhoto = (file) => {
+  if(file.type !== 'image/jpeg' && file.type !== 'image/png') {
+    return false;
+  }
+  if(file.size > (1 * 1024 * 1024)) {
+    return false;
+  }
+  return true;
+}
+
+// export const awsS3BucketUrl = 'https://s3.ap-south-1.amazonaws.com/fuse-photos/'; 
+export const awsS3BucketUrl = '';

@@ -17,7 +17,7 @@
 .Button1 button:hover,
 .Button1 button:active {
     color: #2874ff;
-    background-color: white;
+    background-color: #b0ccff;
     border: 1px solid #2874ff;
 }
 

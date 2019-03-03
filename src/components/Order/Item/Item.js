@@ -1,13 +1,19 @@
 import React from 'react';
 
 import module from './Item.module.css';
+import { awsS3BucketUrl } from '../../../shared/utility';
 
 const item = (props) => {
+  let src = null;
+  if(props.src) {
+    src = awsS3BucketUrl + props.src;
+  }
   return (
     <div className={module.Item} >
       <div className={module.Container} >
         <div className={module.Photo} >
-          <img src={props.src ? props.src : 'https://cdn.fstoppers.com/styles/full/s3/media/2015/12/07/white_background_bag_after.jpg'} alt={props.name} />
+          {/* eslint-disable-next-line */}
+          <img src={src} />
         </div>
         <div className={module.InfoContainer} >
           <div className={module.Info} >
