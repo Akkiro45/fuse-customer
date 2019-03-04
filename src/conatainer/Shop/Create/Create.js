@@ -236,13 +236,21 @@ class Create extends Component {
           <div className={module.Domain} >
             <Space />
             <Label>Domain Name</Label>
-            <Label>eg. applestore</Label>
-            <Label>Must not contain any special symbols!</Label>
+            <Label>eg. fusestore</Label>
             <div className={module.Pair} >
               <div className={module.Left} style={{ width: '85%' }} >
                 {getInput(this.state.data.domain ,this.inputChangedHandler)}
               </div>
               {icon}
+            </div>
+            <div className={module.Msg} >
+              -> Only Characters, Numbers and - allowed!
+            </div>
+            <div className={module.Msg} >
+              -> No space or special symbols allowed! 
+            </div>
+            <div className={module.Msg} >
+              -> Maximum length 120 Characters! 
             </div>
             <div className={module.Buttons}>
               <div className={module.Button} >

@@ -58,9 +58,7 @@ export const uploadPhoto = (image, token, isUpdate) => {
 //     const headers = {
 //       'x-auth': token 
 //     }
-    
 //     dispatch(photoUploadStart());
-//     dispatch(photoUploadSuccess({ name: 'ashks', type: 'image/jpg' }));
-//     // dispatch(photoUploadFail('Error'));
+//     dispatch(photoUploadSuccess({ name: 'asas', type: 'image/jpg' }));
 //   }
 // } 

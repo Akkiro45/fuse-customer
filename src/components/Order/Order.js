@@ -22,6 +22,7 @@ import { convertAddress } from '../../shared/utility';
 import Spinner from '../UI/Spinner/Spinner';
 import DeliveryTimeLabel from './DeliveryTimeLabel/DeliveryTimeLabel';
 import CPopup from './ConfirmPopup/ConfirmPopup';
+import Summary from './Summary/Summary';
 
 class Order extends Component {
   state = {
@@ -153,7 +154,6 @@ class Order extends Component {
       phoneNumber: this.props.phoneNumber,
       from: this.props.from,
       to: this.props.to,
-      // expirationTime: this.props.expirationTime,
       items: this.props.items,
       allowCancelOrder: this.props.allowCancelOrder
     }
@@ -237,28 +237,17 @@ class Order extends Component {
         </div>
       );
     }
-    if(this.state.init) {
-      control = (
-        <div>
-          <div className={module.Info} >
-            <Block 
-              leftIcon1={<PriceTag />}
-              leftText1='Status'
-              rightIcon1={<ForwardArrow  />}
-              rightText1={this.state.cancelled ? 'Cancelled' : 'Arrived'}
-              leftIcon2={<DeliveryRun />}
-              leftText2='Delivered'
-              rightIcon2={<ForwardArrow  />}
-              rightText2={this.state.delivered ? 'Yes' : 'Pending'}
-              color1={ this.state.cancelled ? 'red' : 'green' }
-              color2='red'
-            />
-          </div>
-          {buttons}
-          {summary}
-        </div>
-      );
-    } else if(this.state.notdelivered) {
+    let st;
+    if(this.state.cancelled) {
+      st = 'No';
+    } else {
+      if(this.state.delivered) {
+        st = 'Yes';
+      } else {
+        st = 'Pending';
+      }
+    }
+    if(this.state.notdelivered) {
       control = (
         <div>
           <div className={module.Info} >
@@ -275,6 +264,27 @@ class Order extends Component {
               color2={'red'}
             />
           </div>
+          {summary}
+        </div>
+      );
+    } else if(this.state.init) {
+      control = (
+        <div>
+          <div className={module.Info} >
+            <Block 
+              leftIcon1={<PriceTag />}
+              leftText1='Status'
+              rightIcon1={<ForwardArrow  />}
+              rightText1={this.state.cancelled ? 'Cancelled' : 'Arrived'}
+              leftIcon2={<DeliveryRun />}
+              leftText2='Delivered'
+              rightIcon2={<ForwardArrow  />}
+              rightText2={st}
+              color1={ this.state.cancelled ? 'red' : 'green' }
+              color2='red'
+            />
+          </div>
+          {buttons}
           {summary}
         </div>
       );
@@ -433,6 +443,18 @@ class Order extends Component {
                   src={item.photo.name} />
       });
     }
+    let ias = (
+      <Aux>
+        <div className={module.SummaryBox} >
+          <Summary 
+            subTotal={this.props.subTotal}
+            deliveryCharge={this.props.deliveryCharge}
+            total={this.props.amount}
+          />
+        </div>
+        {items}
+      </Aux>
+    );
     let time = null;
     if(this.state.reject || this.state.delivered || this.state.cancelled || this.state.cancelled || this.state.confirmed) {
       time = <div className={module.TimeAt} >
@@ -453,7 +475,7 @@ class Order extends Component {
             <div className={module.Divider} ></div>
             <div className={module.Control} >{control}</div>
           </div>
-          {this.state.show ? items : null}
+          {this.state.show ? ias : null}
           <div className={module.Footer} onClick={this.onClickHandler} >
             {footer}
           </div>

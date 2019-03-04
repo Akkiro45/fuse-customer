@@ -9,7 +9,6 @@
   background-color: white;
   border-radius: 4px;
 }
-
 .Box:hover {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
@@ -18,7 +17,6 @@
   width: 100%;
   height: auto;
 }
-
 .TimeAt {
   width: 95%;
   margin: auto;
@@ -29,7 +27,6 @@
   font-size: 1em;
   border-bottom: 1px solid #eee;
 }
-
 .Footer {
   box-sizing: border-box;
   width: 100%;
@@ -42,7 +39,6 @@
   text-align: center;
   cursor: pointer;
 }
-
 .Container .Header {
   box-sizing: border-box;
   width: 100%;
@@ -66,7 +62,6 @@
   background-color: #2874ff;
   margin: auto;
 }
-
 .Header .Name {
   width: 95%;
   margin: auto;
@@ -75,7 +70,6 @@
   color: #444;
   font-weight: bold;
 }
-
 .Header .Time {
   width: 90%;
   margin: auto;
@@ -84,7 +78,6 @@
   color: #444;
   font-size: 1.2em;
 }
-
 .Header .Address {
   width: 90%;
   margin: auto;
@@ -109,19 +102,16 @@
   float: right;
   width: 95%;
 }
-
 .Control {
   width: 95%;
   height: auto;
   margin: auto;
   display: block;
 }
-
 .Buttons {
   width: 100%;
   height: 100px;
 }
-
 .ButtonRight {
   box-sizing: border-box;
   width: 50%;
@@ -130,7 +120,6 @@
   text-align: center;
   padding-top: 25px;
 }
-
 .ButtonLeft {
   box-sizing: border-box;
   width: 50%;
@@ -139,13 +128,11 @@
   text-align: center;
   padding-top: 25px;
 }
-
 .Form {
   margin: auto;
   width: 100%;
   height: 165px;
 }
-
 .CustChoice {
   width: 100%;
   height: 45px;
@@ -157,12 +144,10 @@
   font-weight: bold;
   font-size: 14px;
 }
-
 .DeliveryTime {
   width: 100%;
   height: 100px;
 }
-
 .DateText {
   text-align: center;
   font-size: 1.2em;
@@ -181,7 +166,6 @@
   width: 10%;
   color: #444;
 }
-
 .Delivery {
   width: 100%;
   height: 25px;
@@ -209,8 +193,10 @@
   font-weight: bold;
   border-top: 2px solid #2874ff;
 }
+.SummaryBox {
+  border-top: 1px solid #eee;
+} 
 
- 
 @media(max-width: 600px) {
   .Header .Address {
     font-size: 0.8em;

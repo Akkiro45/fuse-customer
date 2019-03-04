@@ -184,7 +184,6 @@ class Inventory extends Component {
     }
     let mpValues;
     mpValues = data.mpValues;
-    // let price = updateObject(this.state.price, { value: data.price });
     let description = updateObject(this.state.description, { value: data.description });
     this.setState({ item: true, itemID: data._id, name, mUnit, mUnits, mpValues, description, itemPhoto: data.photo, itemCategorie: data.category, error: null });
   }

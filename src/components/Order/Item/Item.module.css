@@ -4,7 +4,6 @@
   border-top: 2px solid #eee;
   background-color: white;
 }
-
 .Container {
   width: 95%;
   height: 90%;
@@ -23,20 +22,17 @@
   height: 100%;
   border-radius: 4px;
 }
-
 .InfoContainer {
   width: calc(100% - 154px);
   height: 100%;
   float: right;
 }
-
 .Info {
   width: 65%;
   height: 100%;
   text-align: left;
   float: left;
 }
-
 .Price {
   width: 35%;
   height: 100%;

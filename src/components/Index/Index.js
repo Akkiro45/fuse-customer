@@ -21,9 +21,6 @@ const index = (props) => {
     <div className={module.Index} >
       <div className={module.Showcase} >
         <div style={style}  >
-          <div className={module.Fuse} >
-            {/* Fuse */}
-          </div>
           <div className={module.TagLine} >
             Make your shop online!
           </div>
@@ -116,10 +113,10 @@ const index = (props) => {
               </div>
             </div>
             <div className={module.RightC} >
-              <div className={module.Label} >
+              <div className={module.Label1} >
                 <a href={tacUrl + '/privacy-policy'} target='_' >Privacy Policy</a>
               </div>
-              <div className={module.Label} >
+              <div className={module.Label1} >
                 <a href={tacUrl} target='_' >Terms &amp; Conditions</a>
               </div>
             </div>

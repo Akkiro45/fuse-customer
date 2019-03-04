@@ -1,14 +1,12 @@
 .mainDiv {
-    width: 90%;
-    max-width: 950px;
-    margin: auto;
-    font-family: "Times New Roman", Times, serif;
+	width: 90%;
+	max-width: 950px;
+	margin: auto;
+	font-family: "Times New Roman", Times, serif;
 }
-
 .mainContent {
-    text-align: justify;
+	text-align: justify;
 }
-
 .subContent {
-    display: block;
+	display: block;
 }

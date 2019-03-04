@@ -43,14 +43,6 @@
 .Right {
   float: right;
 }
-.Fuse {
-  color: white;
-  font-weight: bold;
-  font-size: 3em;
-  text-align: center;
-  position: relative;
-  top: 120px;
-}
 .TagLine {
   font-weight: 100;
   font-size: 1.2em;
@@ -141,17 +133,23 @@
   float: left;
   margin-top: 30px;
 }
-.Label {
+.Label,
+.Label1 {
   color: white;
   font-size: 16px;
   text-align: left;
   margin: 15px 0;
 }
-.Label a {
+.Label1 {
+  text-align: right;
+}
+.Label a,
+.Label1 a {
   color: white;
   text-decoration: none;
 }
-.Label a:hover {
+.Label a:hover,
+.Label1 a:hover {
   color: #b0ccff;
 }
 
@@ -184,7 +182,8 @@
   .Text1 {
     font-size: 12px;
   }
-  .Label {
-    font-size: 14px;
+  .Label,
+  .Label1 {
+    font-size: 12px;
   }
 }

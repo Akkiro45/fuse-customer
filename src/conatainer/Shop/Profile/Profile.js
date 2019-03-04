@@ -216,7 +216,6 @@ class Profile extends Component {
       );
     } else if(this.state.edit === 'shopPhotos') {
       compo = <ImageUploader
-        // src={src}
         update
         onPhotoUploaded={this.onPhotoUploaded}
       />
@@ -387,7 +386,6 @@ class Profile extends Component {
             <div className={module.Photo} >
               {/* eslint-disable-next-line  */}
               <img src={src} />
-              {/* <img src={'https://as2.ftcdn.net/jpg/01/24/00/49/500_F_124004924_EjrA0S1BFvp3ScWCFMzRcgTnDuX3dGZh.jpg'} /> */}
             </div>
             <Space />
             

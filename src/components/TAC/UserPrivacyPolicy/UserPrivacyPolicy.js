@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 import module from './UserPrivacyPolicy.module.css';
 
@@ -10,7 +10,7 @@ const userPrivacyPolicy = (props) => {
                 <span>
                     Welcome to Fuse!<br />
                     <p>This website is owned and managed by Fuse. Fuse respects your privacy. The Privacy Policy set out below details the manner in which information relating to you is collected, used and disclosed. </p>
-                    <p>Customers are advised to please read the Privacy Policy carefully. By accessing and using the &quot;https://www.fuse.com&quot; website, (the “Web Site”), you are agreeing to be legally bound by the terms &amp; conditions of the privacy policy and consent to the collection and use of your data by the Fuse in the manner provided in the Privacy Policy. If you do not agree with the terms &amp; conditions of the Privacy Policy, please do not use or access the website.</p>
+                    <p>Customers are advised to please read the Privacy Policy carefully. By accessing and using the &quot;https://shop.thefuse.in&quot; website, (the “Web Site”), you are agreeing to be legally bound by the terms &amp; conditions of the privacy policy and consent to the collection and use of your data by the Fuse in the manner provided in the Privacy Policy. If you do not agree with the terms &amp; conditions of the Privacy Policy, please do not use or access the website.</p>
                     <p>Fuse may change these terms &amp; conditions of Privacy Policy at any time without any prior notification to you. You can access the latest version of these terms &amp; conditions of Privacy Policy at any given time on the Site. Your use of the Web Site after any changes have been posted will constitute your agreement to the modified terms &amp; conditions of Privacy Policy and all of the changes. Therefore, you should read the Privacy Policy from time to time for changes.</p>
                 </span>
                 <div className={module.subcontent}>
@@ -36,8 +36,8 @@ const userPrivacyPolicy = (props) => {
                 <div className={module.subcontent}>
                     <h4>Contact Information</h4>
                     <span>
-                        <p>In the event of loss of access to the website, you contact the Company by sending an e-mail to: hello@fuse.com.</p>
-                        <p>Email id: hello@fuse.com</p>
+                        <p>In the event of loss of access to the website, you contact the Company by sending an e-mail to: contact@thefuse.in.</p>
+                        <p>Email id: contact@thefuse.in</p>
                     </span>
                 </div>
             </div>

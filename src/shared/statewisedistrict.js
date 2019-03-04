@@ -1,5 +1,4 @@
 export const AndhraPradesh = [
-  // { name: 'Andhra Pradesh*', value: 'Andhra Pradesh*' },
   { name: 'district*', value: 'district*' },
   { name: 'Anantapur', value: 'Anantapur' },
   { name: 'Chittoor', value: 'Chittoor' },
@@ -17,7 +16,6 @@ export const AndhraPradesh = [
 ];
 
 export const ArunachalPradesh = [
-  // { name: '*Arunachal Pradesh', value: '*Arunachal Pradesh' },
   { name: 'district*', value: 'district*' },
   { name: 'Anjaw', value: 'Anjaw' },
   { name: 'Changlang', value: 'Changlang' },
@@ -46,7 +44,6 @@ export const ArunachalPradesh = [
 ];
 
 export const Assam = [
-  // { name: '*Assam', value: '*Assam' },
   { name: 'district*', value: 'district*' },
   { name: 'Baksa', value: 'Baksa' },
   { name: 'Barpeta', value: 'Barpeta' },
@@ -85,7 +82,6 @@ export const Assam = [
 ];
 
 export const Bihar = [
-  // { name: '*Bihar', value: '*Bihar' },
   { name: 'district*', value: 'district*' },
   { name: 'Araria', value: 'Araria' },
   { name: 'Arwal', value: 'Arwal' },
@@ -128,7 +124,6 @@ export const Bihar = [
 ];
 
 export const Chhattisgarh = [
-  // { name: '*Chhattisgarh', value: '*Chhattisgarh' },
   { name: 'district*', value: 'district*' },
   { name: 'Balod', value: 'Balod' },
   { name: 'Baloda Bazar', value: 'Baloda Bazar' },
@@ -160,14 +155,12 @@ export const Chhattisgarh = [
 ];
 
 export const Goa = [
-  // { name: '*Goa', value: '*Goa' },
   { name: 'district*', value: 'district*' },
   { name: 'North Goa', value: 'North Goa' },
   { name: 'South Goa', value: 'South Goa' },
 ];
 
 export const Gujarat = [
-  // { name: '*Gujarat', value: '*Gujarat' },
   { name: 'district*', value: 'district*' },
   { name: 'Ahmedabad', value: 'Ahmedabad' },
   { name: 'Amreli', value: 'Amreli' },
@@ -205,7 +198,6 @@ export const Gujarat = [
 ];
 
 export const Haryana = [
-  // { name: '*Haryana', value: '*Haryana' },
   { name: 'district*', value: 'district*' },
   { name: 'Ambala', value: 'Ambala' },
   { name: 'Bhiwani', value: 'Bhiwani' },
@@ -232,7 +224,6 @@ export const Haryana = [
 ];
 
 export const HimachalPradesh = [
-  // { name: '*HimachalPradesh', value: '*HimachalPradesh' },
   { name: 'district*', value: 'district*' },
   { name: 'Bilaspur', value: 'Bilaspur' },
   { name: 'Chamba', value: 'Chamba' },
@@ -249,7 +240,6 @@ export const HimachalPradesh = [
 ];
 
 export const JammuandKashmir = [
-  // { name: '*Jammu and Kashmir', value: '*Jammu and Kashmir' },
   { name: 'district*', value: 'district*' },
   { name: 'Anantnag', value: 'Anantnag' },
   { name: 'Bandipore', value: 'Bandipore' },
@@ -276,7 +266,6 @@ export const JammuandKashmir = [
 ];
 
 export const Jharkhand = [
-  // { name: '*Jharkhand', value: '*Jharkhand' },
   { name: 'district*', value: 'district*' },
   { name: 'Bokaro', value: 'Bokaro' },
   { name: 'Chatra', value: 'Chatra' },
@@ -305,7 +294,6 @@ export const Jharkhand = [
 ];
 
 export const Karnataka = [
-  // { name: '*Karnataka', value: '*Karnataka' },
   { name: 'district*', value: 'district*' },
   { name: 'Bagalkot', value: 'Bagalkot' },
   { name: 'Ballari', value: 'Ballari' },
@@ -340,7 +328,6 @@ export const Karnataka = [
 ];
 
 export const Kerala = [
-  // { name: '*Kerala', value: '*Kerala' },
   { name: 'district*', value: 'district*' },
   { name: 'Alappuzha', value: 'Alappuzha' },
   { name: 'Ernakulam', value: 'Ernakulam' },
@@ -359,7 +346,6 @@ export const Kerala = [
 ];
 
 export const MadhyaPradesh = [
-  // { name: '*Madhya Pradesh', value: '*Madhya Pradesh' },
   { name: 'district*', value: 'district*' },
   { name: 'Agar Malwa', value: 'Agar Malwa' },
   { name: 'Alirajpur', value: 'Alirajpur' },
@@ -415,7 +401,6 @@ export const MadhyaPradesh = [
 ];
 
 export const Maharashtra = [
-  // { name: '*Maharashtra', value: '*Maharashtra' },
   { name: 'district*', value: 'district*' },
   { name: 'Ahmednagar', value: 'Ahmednagar' },
   { name: 'Akola', value: 'Akola' },
@@ -456,7 +441,6 @@ export const Maharashtra = [
 ];
 
 export const Manipur = [
-  // { name: '*Manipur', value: '*Manipur' },
   { name: 'district*', value: 'district*' },
   { name: 'Bishnupur', value: 'Bishnupur' },
   { name: 'Chandel', value: 'Chandel' },
@@ -477,7 +461,6 @@ export const Manipur = [
 ];
 
 export const Meghalaya = [
-  // { name: '*Meghalaya', value: '*Meghalaya' },
   { name: 'district*', value: 'district*' },
   { name: 'East Garo Hills', value: 'East Garo Hills' },
   { name: 'East Jaintia Hills', value: 'East Jaintia Hills' },
@@ -493,7 +476,6 @@ export const Meghalaya = [
 ];
 
 export const Mizoram = [
-  // { name: '*Mizoram', value: '*Mizoram' },
   { name: 'district*', value: 'district*' },
   { name: 'Aizawl', value: 'Aizawl' },
   { name: 'Champhai', value: 'Champhai' },
@@ -506,7 +488,6 @@ export const Mizoram = [
 ];
 
 export const Nagaland = [
-  // { name: '*Nagaland', value: '*Nagaland' },
   { name: 'district*', value: 'district*' },
   { name: 'Dimapur', value: 'Dimapur' },
   { name: 'Kiphire', value: 'Kiphire' },
@@ -522,7 +503,6 @@ export const Nagaland = [
 ];
 
 export const Odisha = [
-  // { name: '*Odisha', value: '*Odisha' },
   { name: 'district*', value: 'district*' },
   { name: 'Angul', value: 'Angul' },
   { name: 'Balangir', value: 'Balangir' },
@@ -557,7 +537,6 @@ export const Odisha = [
 ];
 
 export const Punjab = [
-  // { name: '*Punjab', value: '*Punjab' },
   { name: 'district*', value: 'district*' },
   { name: 'Amritsar', value: 'Amritsar' },
   { name: 'Barnala', value: 'Barnala' },
@@ -584,7 +563,6 @@ export const Punjab = [
 ];
 
 export const Rajasthan = [
-  // { name: '*Rajasthan', value: '*Rajasthan' },
   { name: 'district*', value: 'district*' },
   { name: 'Ajmer', value: 'Ajmer' },
   { name: 'Alwar', value: 'Alwar' },
@@ -622,7 +600,6 @@ export const Rajasthan = [
 ];
 
 export const Sikkim = [
-  // { name: '*Sikkim', value: '*Sikkim' },
   { name: 'district*', value: 'district*' },
   { name: 'East Sikkim', value: 'East Sikkim' },
   { name: 'North Sikkim', value: 'North Sikkim' },
@@ -631,7 +608,6 @@ export const Sikkim = [
 ];
 
 export const TamilNadu = [
-  // { name: '*Tamil Nadu', value: '*Tamil Nadu' },
   { name: 'district*', value: 'district*' },
   { name: 'Ariyalur', value: 'Ariyalur' },
   { name: 'Chennai', value: 'Chennai' },
@@ -668,7 +644,6 @@ export const TamilNadu = [
 ];
 
 export const Telangana = [
-  // { name: '*Telangana', value: '*Telangana' },
   { name: 'district*', value: 'district*' },
   { name: 'Adilabad', value: 'Adilabad' },
   { name: 'Bhadradri Kothagudem', value: 'Bhadradri Kothagudem' },
@@ -706,7 +681,6 @@ export const Telangana = [
 ];
 
 export const Tripura = [
-  // { name: '*Tripura', value: '*Tripura' },
   { name: 'district*', value: 'district*' },
   { name: 'Dhalai', value: 'Dhalai' },
   { name: 'Gomati', value: 'Gomati' },
@@ -719,7 +693,6 @@ export const Tripura = [
 ];
 
 export const Uttarakhand = [
-  // { name: '*Uttarakhand', value: '*Uttarakhand' },
   { name: 'district*', value: 'district*' },
   { name: 'Almora', value: 'Almora' },
   { name: 'Bageshwar', value: 'Bageshwar' },
@@ -737,7 +710,6 @@ export const Uttarakhand = [
 ];
 
 export const UttarPradesh = [
-  // { name: '*Uttar Pradesh', value: '*Uttar Pradesh' },
   { name: 'district*', value: 'district*' },
   { name: 'Agra', value: 'Agra' },
   { name: 'Aligarh', value: 'Aligarh' },
@@ -816,7 +788,6 @@ export const UttarPradesh = [
 ];
 
 export const WestBengal = [
-  // { name: '*West Bengal', value: '*West Bengal' },
   { name: 'district*', value: 'district*' },
   { name: 'Alipurduar', value: 'Alipurduar' },
   { name: 'Bankura', value: 'Bankura' },

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 import module from './TAC.module.css';
 
@@ -9,7 +9,7 @@ const tac = () => {
             <div className={module.mainContent}>
                 <span>
                     Welcome to Fuse!<br />
-                    <p>This website is owned and managed by &quot;Fuse&quot;. By accessing and using the &quot;https://www.fuse.com&quot; website, (the &quot;Web Site&quot;), you are agreeing to be legally bound by these Terms &amp; Conditions. The terms &quot;you&quot; and &quot;User&quot; refers to anyone who accesses the Web Site.</p>
+                    <p>This website is owned and managed by &quot;Fuse&quot;. By accessing and using the &quot;https://shop.thefuse.in&quot; website, (the &quot;Web Site&quot;), you are agreeing to be legally bound by these Terms &amp; Conditions. The terms &quot;you&quot; and &quot;User&quot; refers to anyone who accesses the Web Site.</p>
                     <p>As you browse through the website you may access other web sites that are subject to different terms of use. When you use those sites, you will be legally bound by the specific terms of use posted on such sites. If there is a conflict between these Terms &amp; Conditions and the other terms and conditions, the other terms &amp; conditions will govern with respect to use of such pages.</p>
                     <p>&quot;Fuse&quot; may change these Terms &amp; Conditions at any time without any prior notification to you. You can access the latest version of these Terms &amp; Condition at any given time on the Site. Your use of the Web Site after any changes have been posted will constitute your agreement to the modified Terms &amp; Conditions and all of the changes. Therefore, you should read these Terms &amp; Conditions from time to time for changes.</p>
                 </span>
@@ -33,7 +33,7 @@ const tac = () => {
                     <h4>Site Access</h4>
                     <span>
                         <p>The Web Site and the content, including, but not limited to, text, data, reports, opinions, images, photos, graphics, graphs, charts, animations and video (the &quot;Content&quot;), displayed on the Web Site, may be used only for your personal and non-commercial use. Except as otherwise permitted under these Terms &amp; Conditions, you agree not to copy, reproduce, modify, create derivative works from, or store any content, in whole or in part, from the Web Site or to display, perform, publish, distribute, transmit, broadcast or circulate any content to anyone, or for any commercial purpose, without the express prior written consent of &quot;Fuse&quot;.</p>
-                        <p>The Content is the exclusive property of Fuse. All trade names, trademarks, service marks and other product and service name and logos on the web Site and within the content are proprietary to their respective owners. Any of the trademarks, service marks or logos (collectively, the &quot;Marks&quot;) displayed on the Web Site may be registered or unregistered marks of Fuse or others. Nothing contained on this Web Site should be construed as granting any license or right to use any of the Marks displayed on the Web Site without the express written permission of Fuse or a third party owner of such Marks. Any unauthorized uses of the Marks or any other Content or other Fuse material, please contact Fuse at https://www.fuse.com.</p>
+                        <p>The Content is the exclusive property of Fuse. All trade names, trademarks, service marks and other product and service name and logos on the web Site and within the content are proprietary to their respective owners. Any of the trademarks, service marks or logos (collectively, the &quot;Marks&quot;) displayed on the Web Site may be registered or unregistered marks of Fuse or others. Nothing contained on this Web Site should be construed as granting any license or right to use any of the Marks displayed on the Web Site without the express written permission of Fuse or a third party owner of such Marks. Any unauthorized uses of the Marks or any other Content or other Fuse material, please contact Fuse at contact@thefuse.in.</p>
                     </span>
                 </div>
                 <div className={module.subcontent}>

@@ -5,13 +5,11 @@
   height: 100%;
   margin: auto;
 }
-
 .Icon {
   float: left;
   height: 100%;
   width: 5%;
 }
-
 .Text,
 .Text1 {
   display: block;
@@ -20,20 +18,16 @@
   margin-left: 5%;
   color: #444;
 }
-
-
 .InfoContainer .Icon1 {
   width: 50%;
   height: 100%;
   float: left;
 }
-
 .InfoContainer .Icon2 {
   width: 50%;
   height: 100%;
   float: right;
 }
-
 .InfoContainer .Left {
   width: 80%;
   height: 50%;
@@ -42,7 +36,6 @@
 .Left span {
   margin-top: 5%;
 }
-
 .InfoContainer .Right {
   height: 50%;
   width: 70%;

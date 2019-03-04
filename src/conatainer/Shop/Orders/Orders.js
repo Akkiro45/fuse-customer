@@ -133,7 +133,9 @@ class Orders extends Component {
                     name={order.firstName + ' ' + order.lastName}
                     address={order.address}
                     time={time.timeStamp}
-                    amount={order.totalCost}
+                    amount={parseInt(order.totalCost) + parseInt(order.deliveryCharge)}
+                    subTotal={parseInt(order.totalCost)}
+                    deliveryCharge={parseInt(order.deliveryCharge)}
                     phoneNumber={order.phoneNumber}
                     from={order.deliveryTime ? order.deliveryTime.from : null}
                     to={order.deliveryTime ? order.deliveryTime.to : null}
