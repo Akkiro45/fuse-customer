@@ -109,7 +109,7 @@ const index = (props) => {
                 STAY CONNECTED
               </div>
               <div className={module.Label} >
-                Write to us at official@thefuse.in
+                Write to us at contact&#64;thefuse.in
               </div>
             </div>
             <div className={module.RightC} >

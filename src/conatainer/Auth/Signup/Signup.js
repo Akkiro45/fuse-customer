@@ -166,7 +166,7 @@ class Signup extends Component {
                   <div>
                     {/* eslint-disable-next-line */}
                     <a href={tacUrl} target='_blank'>
-                      Terms and conditions
+                      Terms &amp; Conditions
                     </a>
                   </div>
                 </div>
