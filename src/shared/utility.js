@@ -98,8 +98,12 @@ export const dateTimeFormate = (timeStamp) => {
   return moment(timeStampInt).format('MMMM Do YYYY, h:mm a');
 }
 
+export const capatalize = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+
 export const convertAddress = (address) => {
-  return `${address.streetAdd}, ${address.landmark}, ${address.city}-${address.pincode} ${address.state}`;
+  return `${capatalize(address.streetAdd)}, ${capatalize(address.landmark)}, ${address.city}-${address.pincode} ${address.state}`;
 }
 
 export const checkwhiteSpaces = (str) => {
@@ -164,7 +168,7 @@ export const validateCreateShop1 = (data) => {
     }
   }
   if(data.shopCategories.length === 0) {
-    return { valid: false, msg: `Please select shop category` };
+    return { valid: false, msg: `Please select shop category and click on add icon.` };
   }
   finalData.shopName = data.shopName.value;
   if(data.isStatic.value === 'true') {
@@ -382,7 +386,7 @@ export const itemValidator = (name, category, mUnit, mUnits, mpValues, descripti
     return { valid: false, msg: `Please Select Measure Unit` };
   }
   if(mpValues.length === 0) {
-    return { valid: false, msg: `Please enter Measure Unit's value and price!` };
+    return { valid: false, msg: `Please enter Measure Unit's value and price and click on add icon!` };
   }
   if(checkLimit(description)) {
     return checkLimit(description);

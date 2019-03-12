@@ -26,7 +26,7 @@ class Create extends Component {
       ...ShopState
     },
     error: null,
-    next: false,
+    next: true,
     finalData: null,
     districtsOp: [
       { name: 'district*', value: 'district*' }
@@ -199,6 +199,9 @@ class Create extends Component {
           <Space />
           <Label>Delivery Service</Label>
           {getSelect(this.state.data.isStatic, deliveryService, this.onSelectHandler, 'isStatic')}
+          <div className={module.Msg1} >
+            If you set delivery service to Yes then you will not be able to change it back to No in Future!
+          </div>
           {deliveryCharge}
           <Space />
           <Label>Contact Number</Label>
@@ -228,6 +231,9 @@ class Create extends Component {
     } else {
       ren = (
         <Aux> 
+          <div className={module.SPLabel} >
+            Shop Photo(Optional)
+          </div>
           <div className={module.PhotoC} >
             <ImageUploader 
               onPhotoUploaded={this.onPhotoUploaded}

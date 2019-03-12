@@ -227,6 +227,9 @@ class Profile extends Component {
           <div className={module.Input} >
             {getRSelect(this.state.isStatic, deliveryService, this.onSelectHandler, 'isStatic')}
           </div>
+          <div className={module.Msg} >
+            If you update delivery service to Yes then you will not be able to change it back to No!
+          </div>
         </div>
       );
       compo = (

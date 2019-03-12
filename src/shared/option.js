@@ -2,13 +2,19 @@ export const shopCategories = [
   { name: 'Category*', value: 'Category*' },
   { name: 'Grocery', value: 'Grocery' },
   { name: 'Dairy', value: 'Dairy' },
-  { name: 'Fashion', value: 'Fashion' },
   { name: 'Fruits & Vegetables', value: 'Fruits & Vegetables' },
-  { name: 'Toys & Entertainment', value: 'Toys & Entertainment' },
-  { name: 'Pharmacy', value: 'Pharmacy' },
   { name: 'Bakery', value: 'Bakery' },
+  { name: 'Sweet Shop', value: 'Sweet Shop' },
   { name: 'Stationary & Books', value: 'Stationary & Books' },
-  { name: 'Electronics & Accessories', value: 'Electronics & Accessories' }
+  { name: 'Pharmacy', value: 'Pharmacy' },
+  { name: 'Surgical', value: 'Surgical' },
+  { name: 'Optician', value: 'Optician' },
+  { name: 'Electronics & Accessories', value: 'Electronics & Accessories' },
+  { name: 'Fashion', value: 'Fashion' },
+  { name: 'Toys & Entertainment', value: 'Toys & Entertainment' },
+  { name: 'Furniture Store', value: 'Furniture Store' },
+  { name: 'Costume Shop', value: 'Costume Shop' },
+  { name: 'Restaurant', value: 'Restaurant' }
 ];
 
 export const linksType = [
