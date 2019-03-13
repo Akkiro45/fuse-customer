@@ -26,7 +26,7 @@ class Create extends Component {
       ...ShopState
     },
     error: null,
-    next: true,
+    next: false,
     finalData: null,
     districtsOp: [
       { name: 'district*', value: 'district*' }

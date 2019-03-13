@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/js/3.211053b0.chunk.js"
   },
   {
-    "revision": "b67b2e728991141728c1",
+    "revision": "f641d334c7afbf0959ec",
     "url": "/static/css/main.5dc25518.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/static/media/Fuse-BG35.fe534bc4.png"
   },
   {
-    "revision": "b67b2e728991141728c1",
-    "url": "/static/js/main.b67b2e72.chunk.js"
+    "revision": "f641d334c7afbf0959ec",
+    "url": "/static/js/main.f641d334.chunk.js"
   },
   {
     "revision": "28cec831bd023721918f",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/static/css/1.ed39b494.chunk.css"
   },
   {
-    "revision": "ccbb9d7cfe3464b324b98846e40640db",
+    "revision": "5bdf3072619c7064794c851db8c99eb5",
     "url": "/index.html"
   }
 ];
