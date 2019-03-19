@@ -8,6 +8,7 @@
   border: 1px solid #b0ccff;
 }
 .Select:hover,
-.Select:active {
+.Select:active,
+.Select:focus {
   border: 1px solid #2874ff;
 }

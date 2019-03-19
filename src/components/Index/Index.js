@@ -40,6 +40,65 @@ const index = (props) => {
       <div className={module.Content} >
         <div className={module.Title} >About Us</div><br />
         <div className={module.Text} >Fuse let's you create your own shop online.</div>
+        
+        <div className={module.MainV} >
+          <div className={module.MainVT} >
+            How it works!
+          </div>
+          <iframe 
+            title='How it Works!'
+            className={module.MainVC}
+            src="https://www.youtube.com/embed/j9nRmq3Rg_g?rel=0" 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen
+          ></iframe>
+        </div>
+
+        <div className={module.Videos} >
+          <div className={module.Video} >
+            <div className={module.VideoTR} >
+              How To Create shop on Fuse.
+            </div>
+            <iframe 
+              title='How To Create shop on Fuse.'
+              className={module.VideoCL} 
+              src="https://www.youtube.com/embed/vF010-piexk?rel=0" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+          <hr className={module.HR} />
+          <div className={module.Video} >
+            <div className={module.VideoTL} >
+              How to manage shop on Fuse.
+            </div>
+            <iframe 
+              title='How to manage shop on Fuse.'
+              className={module.VideoCR} 
+              src="https://www.youtube.com/embed/qYCWceu0HRI?rel=0" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+          <hr className={module.HR} />
+          <div className={module.Video} >
+            <div className={module.VideoTR} >
+              How to manage orders on Fuse.
+            </div>
+            <iframe 
+              title='How to manage orders on Fuse.'
+              className={module.VideoCL} 
+              src="https://www.youtube.com/embed/C_4BKNHgTQU?rel=0" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+        
         <div className={module.Cards} >
           <div className={module.Card} >
             <div className={module.Body} >
@@ -101,7 +160,6 @@ const index = (props) => {
             </div>
           </div>
         </div>
-
         <div className={module.Footer} >
           <div className={module.FooterC} >
             <div className={module.LeftC} >

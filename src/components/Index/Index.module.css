@@ -63,7 +63,9 @@
   width: 98%;
   margin: auto;
 }
-.Cards {
+.Cards,
+.Videos,
+.MainV {
   border-top: 1px solid #ccc;
   width: 95%;
   margin: 20px auto;
@@ -152,12 +154,54 @@
 .Label1 a:hover {
   color: #b0ccff;
 }
+.Video {
+  width: 90%;
+  height: 200px;
+  margin: 10px auto;
+}
+.VideoCL,
+.VideoCR {
+  float: left;
+  height: 100%;
+  width: 350px;
+  border: 1px solid #ccc;
+}
+.VideoCR {
+  float: right;
+}
+.VideoTL,
+.VideoTR {
+  float: right;
+  height: 100%;
+  width: calc(100% - 352px);
+  color: #2874ff;
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: bold;
+  line-height: 200px;
+}
+.VideoTL {
+  float: left;
+}
+.MainVT {
+  color: #2874ff;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+.MainVC {
+  width: 560px;
+  height: 315px;
+  border: 1px solid #ccc;
+}
 
 @media( max-width: 630px ) {
   .Links {
     width: 70%;
   }
-  .Cards {
+  .Cards,
+  .Videos {
     width: 100%;
   }
   .Card {
@@ -185,5 +229,38 @@
   .Label,
   .Label1 {
     font-size: 12px;
+  }
+}
+
+@media( max-width: 700px ) {
+  .MainVC {
+    width: 90%;
+    height: 250px;
+    margin: auto;
+  }
+  .MainVT {
+    font-size: 1.5em;
+  }
+}
+
+@media( max-width: 970px ) {
+  .Video {
+    height: auto;
+  }
+  .VideoCL,
+  .VideoCR {
+    height: 200px;
+    width: 300px;
+    clear: both;
+    float: none;
+    text-align: center;
+  }
+  .VideoTL,
+  .VideoTR {
+    clear: both;
+    text-align: center;
+    width: 100%;
+    line-height: normal;
+    font-size: 1.2em;
   }
 }
