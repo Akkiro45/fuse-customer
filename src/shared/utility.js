@@ -366,7 +366,7 @@ export const getRSelect = (field, options, handler, type) => {
     />
   );
 }
-export const itemValidator = (name, category, mUnit, mUnits, mpValues, description, photo) => {
+export const itemValidator = (name, category, mUnit, mUnits, mpValues, description, photo, outOfStock) => {
   let finalData = {};
   let munit = {...mUnit};
   munit.placeholder = 'Item\'s Measure Unit';
@@ -401,6 +401,7 @@ export const itemValidator = (name, category, mUnit, mUnits, mpValues, descripti
   finalData.mpValues = mpValues;
   finalData.description = description.value;
   finalData.photo = photo;
+  finalData.outOfStock = outOfStock;
   return { valid: true, data: finalData };
 }
 export const mpValueValidator = (mValue, price) => {

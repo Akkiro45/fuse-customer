@@ -96,10 +96,16 @@ class Inventory extends Component {
       height: '35px',
       bradius: '4px'
     },
+    outOfStock: false,
     mpValues: [],
     itemID: null,
     itemCategorie: null,
     itemPhoto: null,
+  }
+  onToggleClick = () => {
+    this.setState(prevState => {
+      return { outOfStock: !prevState.outOfStock };
+    });
   }
   onPhotoUploaded = (data) => {
     this.setState({ itemPhoto: data });
@@ -134,13 +140,13 @@ class Inventory extends Component {
     let price = updateObject(this.state.price, { value: '' });  
     let description = updateObject(this.state.description, { value: '' });
     let mpValues = [];
-    this.setState({ icon: false, item: false, name, mUnit, mUnits, mValue, mpValues, price, description, itemPhoto: null });
+    this.setState({ icon: false, item: false, name, mUnit, mUnits, mValue, mpValues, price, description, itemPhoto: null, outOfStock: false });
   }
   onItemHandler = (type) => {
     if(!this.state.itemPhoto) {
       this.setState({ error: 'Please Upload Photo!' });
     } else {
-      const r = itemValidator(this.state.name, this.state.itemCategorie, this.state.mUnit, this.state.mUnits, this.state.mpValues,this.state.description, this.state.itemPhoto);
+      const r = itemValidator(this.state.name, this.state.itemCategorie, this.state.mUnit, this.state.mUnits, this.state.mpValues,this.state.description, this.state.itemPhoto, this.state.outOfStock);
       if(r.valid === false) {
         this.setState({ error: r.msg });
       } else {
@@ -185,7 +191,8 @@ class Inventory extends Component {
     let mpValues;
     mpValues = data.mpValues;
     let description = updateObject(this.state.description, { value: data.description });
-    this.setState({ item: true, itemID: data._id, name, mUnit, mUnits, mpValues, description, itemPhoto: data.photo, itemCategorie: data.category, error: null });
+    const outOfStock = data.outOfStock ? true : false;
+    this.setState({ item: true, itemID: data._id, name, mUnit, mUnits, mpValues, description, itemPhoto: data.photo, itemCategorie: data.category, error: null, outOfStock });
   }
   onIconClick = (category) => {
     this.setState({ icon: true, itemCategorie: category, error: null, mpValues: [] });
@@ -293,6 +300,8 @@ class Inventory extends Component {
           onRmvValue={this.onRmvValue}
           onBack={this.onClear}
           onPhotoUploaded={this.onPhotoUploaded}
+          outOfStock={this.state.outOfStock}
+          onToggleClick={this.onToggleClick}
         />
       );
     } else if(this.state.icon) {
@@ -314,6 +323,8 @@ class Inventory extends Component {
           onRmvValue={this.onRmvValue}
           onBack={this.onClear}
           onPhotoUploaded={this.onPhotoUploaded}
+          outOfStock={this.state.outOfStock}
+          onToggleClick={this.onToggleClick}
         />
       );
     } 

@@ -11,6 +11,8 @@ import AddIcon from '../../../UI/Icons/Add/Add';
 import CrossIcon from '../../../UI/Icons/Cross/Cross';
 import Button from '../../../UI/RButton/Button';
 import BackIcon from '../../../UI/Icons/Back/Back';
+import ToggleOnIcon from '../../../UI/Icons/ToggleOn/ToggleOn';
+import ToggleOffIcon from '../../../UI/Icons/ToggleOff/ToggleOff';
 
 const item = (props) => {
   let error = null;
@@ -106,6 +108,13 @@ const item = (props) => {
           </div>
         </div>
         {values}
+        <Space height='10px' />
+        <div className={module.OS} >
+          <div className={module.Label} >Out of Stock</div>
+          <div className={module.TIcon} >
+            {props.outOfStock ? <ToggleOnIcon onClick={props.onToggleClick} /> : <ToggleOffIcon onClick={props.onToggleClick} />}
+          </div>
+        </div>
         <Space height='10px' />
         <Label>Description</Label>
         <div className={module.Input} >
