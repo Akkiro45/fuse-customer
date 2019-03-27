@@ -479,5 +479,16 @@ export const checkPhoto = (file) => {
   return true;
 }
 
+export const searchItem = (items, serachValue) => {
+  const pattern = new RegExp(serachValue, 'i');
+  let itms = items;
+  if(!checkwhiteSpaces(serachValue)) {
+    itms = items.filter(i => {
+      return pattern.test(i.name);
+    });
+  }
+  return itms;
+}
+
 export const awsS3BucketUrl = 'https://s3.ap-south-1.amazonaws.com/fuse-photos/'; 
 // export const awsS3BucketUrl = '';

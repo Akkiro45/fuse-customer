@@ -4,6 +4,7 @@ import module from './Items.module.css';
 import Item from './Item/Item';
 import AddIcon from '../../../UI/Icons/Add/Add';
 import CrossIcon from '../../../UI/Icons/Cross/Cross';
+import EllipsisIcon from '../../../UI/Icons/Ellipsis/Ellipsis';
 import Popup from '../../../../hoc/ErrorHandler/ErrorHandler';
 import Button from '../../../UI/RButton/Button';
 
@@ -65,11 +66,14 @@ class Items extends Component {
         {popup}
         <div className={module.Container} >
           <div className={module.Category} >
-            <div style={{ float: 'left' }} >
+            <div className={module.Cat} onClick={() => this.props.toggleItems(this.props.category)}>
               {this.props.category}
             </div>
             <div style={{ float: 'right', cursor: 'pointer' }} >
               <CrossIcon onClick={this.togglePopup} />
+            </div>
+            <div style={{ float: 'right', cursor: 'pointer', marginRight: '10px' }} >
+              <EllipsisIcon onClick={() => this.props.toggleItems(this.props.category)} />
             </div>
           </div>
           <div className={module.Content} >

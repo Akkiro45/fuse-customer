@@ -12,6 +12,7 @@ import { updateObject, checkwhiteSpaces, itemValidator, mpValueValidator, compar
 import  { mUnits  as mUnitsOptions } from '../../../shared/option';
 import AddCat from '../../../components/Shop/Inventory/AddCat/AddCat';
 import Item from '../../../components/Shop/Inventory/Item/Item';
+import AllItems from '../../../components/Shop/Inventory/AllItems/AllItems';
 
 class Inventory extends Component {
   state = {
@@ -19,6 +20,16 @@ class Inventory extends Component {
     icon: false,
     cat: false,
     error: null,
+    items: false,
+    selectedCat: '',
+    searchitem: {
+      type: 'text',
+      placeholder: 'Search item...',
+      value: '',
+      name: 'searchitem',
+      required: true,
+      bradius: '4px'
+    },
     category: {
       type: 'text',
       placeholder: 'Category',
@@ -101,6 +112,12 @@ class Inventory extends Component {
     itemID: null,
     itemCategorie: null,
     itemPhoto: null,
+  }
+  toggleItems = (cat) => {
+    const updatedSearchitem = updateObject(this.state.searchitem, { value: '' });
+    this.setState(prevState => {
+      return { items: !prevState.items, selectedCat: cat, searchitem: updatedSearchitem };
+    });
   }
   onToggleClick = () => {
     this.setState(prevState => {
@@ -257,7 +274,8 @@ class Inventory extends Component {
               onItemClick={this.onItemClick}
               onRemoveCat={() => this.onRemoveCatClick(cat._id)}
               items={itms}
-              key={index}  
+              key={index} 
+              toggleItems={this.toggleItems} 
           />
           );
         })
@@ -327,7 +345,21 @@ class Inventory extends Component {
           onToggleClick={this.onToggleClick}
         />
       );
-    } 
+    } else if(this.state.items) {
+      let itms = this.props.items.filter(i => i.category === this.state.selectedCat);
+      itms.sort(compareItem);
+      ren = (
+        <AllItems 
+          items={itms}
+          category={this.state.selectedCat}
+          toggleItems={this.toggleItems}
+          onItemClick={this.onItemClick}
+          inputChangeHandler={this.inputChangeHandler}
+          searchitem={this.state.searchitem}
+          onIconClick={() => this.onIconClick(this.state.selectedCat)}
+        />
+      );
+    }
     if(this.props.loading) {
       ren = ( 
           <Spinner /> 

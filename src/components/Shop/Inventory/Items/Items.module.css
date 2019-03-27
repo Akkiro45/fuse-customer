@@ -17,6 +17,16 @@
   color: #2874ff;
   font-weight: bold;
 }
+.Cat {
+  float: left;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: calc(100% - 80px);
+}
 .Content {
   height: calc(215px - 10%);
   overflow-x: auto;
