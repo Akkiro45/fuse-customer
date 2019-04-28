@@ -8,7 +8,7 @@ let baseURLProd = 'https://quiet-wildwood-54834.herokuapp.com/fuse'
 let server = 'https://fuse45.thefuse.in/fuse';
 
 const instance = axios.create({
-  baseURL: baseURLProd 
+  baseURL: server 
 });
 
 export default instance;
