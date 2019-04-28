@@ -7,6 +7,7 @@ import asyncComponent from './hoc/asyncComponent/asyncComponent';
 import Index from './components/Index/Index';
 import * as actions from './store/actions/index';
 import SpinnerPage from './components/UI/SpinnerPage/SpinnerPage';
+import {PageView, initGA} from './components/Tracking/Tracking';
 // Asynnc Loading
 import Signup from './conatainer/Auth/Signup/Signup';
 import Signin from './conatainer/Auth/Signin/Signin';
@@ -27,7 +28,9 @@ const AsyncPrivacyPolicy = asyncComponent(() => {
 
 class App extends Component {
   componentDidMount() {
-		this.props.onTryAutoSignup(this.props.token);
+    this.props.onTryAutoSignup(this.props.token);
+    initGA();
+    PageView();
   }
   
   render() {
