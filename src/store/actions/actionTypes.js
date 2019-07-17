@@ -56,3 +56,9 @@ export const PHOTO_UPLOAD_START = 'PHOTO_UPLOAD_START';
 export const PHOTO_UPLOAD_FAIL = 'PHOTO_UPLOAD_FAIL';
 export const PHOTO_UPLOAD_SUCCESS = 'PHOTO_UPLOAD_SUCCESS';
 export const PHOTO_UPLOAD_CLEAR = 'PHOTO_UPLOAD_CLEAR';
+
+export const START_LOADING = 'START_LOADING';
+export const STOP_LOADING = 'STOP_LOADING';
+
+export const SET = 'SET';
+export const SET_TOKEN = 'SET_TOKEN'

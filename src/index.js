@@ -14,6 +14,8 @@ import shopReducer from './store/reducers/shop';
 import inventoryReducer from './store/reducers/inventory';
 import profileReducer from './store/reducers/profile';
 import photoUploadReducer from './store/reducers/photo-upload';
+import loadingReducers from './store/reducers/loading';
+import resetpassReducer from './store/reducers/resetpass';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
@@ -23,7 +25,9 @@ const rootReducer = combineReducers({
   shop: shopReducer,
   inv: inventoryReducer,
   profile: profileReducer,
-  upload: photoUploadReducer
+  upload: photoUploadReducer,
+  loading: loadingReducers,
+  resetpass: resetpassReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

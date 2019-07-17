@@ -119,6 +119,9 @@ class Signin extends Component {
               <div className={module.Link} >
                 <Link to="/auth/signup" >Click here to signup</Link>
               </div>
+              <div className={module.Link} >
+                <Link to="/forgot/password" >Forgot Password?</Link>
+              </div>
             </form>
           </div>
         </div>

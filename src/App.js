@@ -13,6 +13,8 @@ import Signup from './conatainer/Auth/Signup/Signup';
 import Signin from './conatainer/Auth/Signin/Signin';
 import Logout from './conatainer/Auth/Logout/Logout';
 import Create from './conatainer/Shop/Create/Create';
+import ResetPass from './components/ResetPass/ResetPass';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 // const asyncCreate = asyncComponent(() => {
 //   return import('./conatainer/Shop/Create/Create');
 // });
@@ -36,6 +38,8 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
+        <Route path="/forgot/password" component={ForgotPassword} />
+        <Route path="/reset/password" component={ResetPass} />
         <Route path="/auth/signup" component={Signup} />
         <Route path="/auth/signin" component={Signin} />
         <Route path="/auth/tandc/privacy-policy" component={AsyncPrivacyPolicy} />

@@ -41,3 +41,15 @@ export {
   uploadPhoto,
   photoUploadClear
 } from './photo-upload';
+
+export {
+  startLoading,
+  stopLoading
+} from './loading';
+
+export {
+  set,
+  sendMail,
+  validateToken,
+  resetPassword
+} from './resetpass';
