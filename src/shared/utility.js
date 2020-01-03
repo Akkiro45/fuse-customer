@@ -33,20 +33,20 @@ export const validateForm = (data, isSignup) => {
       }
     }
     if(!(data.password.length >= 8)) {
-      return { valid: false, msg: 'Password must ne larger than 7 character' };
+      return { valid: false, msg: 'Password must be larger than 7 character' };
     }
   } else {
     return { valid: false, msg: 'Please fill required fields' };
   }
   if(isSignup) {
     if(!(data.password.length >= 8 && data.confirmPassword.length >= 8)) {
-      return { valid: false, msg: 'Password must ne larger than 7 character' };
+      return { valid: false, msg: 'Password must be larger than 7 character' };
     }
     if(!(2 <= data.firstName.length <= 60)) {
       return { valid: false, msg: 'First Name must contain 2 to 60 character!' };
     }
     if(!(2 <= data.lastName.length <= 120)) {
-      return { valid: false, msg: 'First Name must contain 2 to 60 character!' };
+      return { valid: false, msg: 'First Name must contain 2 to 120 character!' };
     }
     if(!(data.password === data.confirmPassword)) {
       return { valid: false, msg: 'Please fill correct password and Confirm Password' };
@@ -490,5 +490,6 @@ export const searchItem = (items, serachValue) => {
   return itms;
 }
 
-export const awsS3BucketUrl = 'https://s3.ap-south-1.amazonaws.com/fuse-photos/'; 
+// export const awsS3BucketUrl = 'https://s3.ap-south-1.amazonaws.com/fuse-photos/'; 
+export const awsS3BucketUrl= 'http://res.cloudinary.com/fuse-official/image/upload/v1577715703/';
 // export const awsS3BucketUrl = '';
