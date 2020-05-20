@@ -15,6 +15,6 @@ For the shopkeeper to manage inventory and orders.
 
 ## Screenshots
 <p align='center' >
- <img src='https://github.com/Akkiro45/assets/blob/master/fuse/screenshots/Screenshot13./png' alt='screenshot' />
+ <img src='https://github.com/Akkiro45/assets/blob/master/fuse/screenshots/Screenshot13.png' alt='screenshot' />
  <img src='https://github.com/Akkiro45/assets/blob/master/fuse/screenshots/Screenshot14.png' alt='screenshot' />
 </p>
